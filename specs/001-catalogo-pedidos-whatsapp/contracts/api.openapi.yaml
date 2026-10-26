@@ -1,0 +1,428 @@
+openapi: 3.0.3
+info:
+  title: JM-STORE — Contrato HTTP
+  version: 1.0.0
+  description: |
+    Diseño de Plan; no representa una API ya implementada.
+    Web y API comparten origen. Sin cuentas de clientes ni pedidos persistidos.
+    Catálogo, imágenes y sesión usan Cache-Control no-store.
+    Toda mutación exige Origin igual a APP_ORIGIN y X-JM-STORE-Request igual a 1.
+    No se autoriza CORS a otros orígenes. Las escrituras requieren sesión válida
+    antes de procesar imagen y antes del commit tras trabajo asíncrono.
+    El éxito de una escritura solo se responde después de su commit.
+servers:
+  - url: /api
+security: []
+tags:
+  - name: Catálogo público
+  - name: Sesión del encargado
+  - name: Gestión protegida
+paths:
+  /catalogo:
+    get:
+      operationId: consultarCatalogo
+      tags: [Catálogo público]
+      summary: Consultar todos los productos y la disponibilidad de WhatsApp
+      description: Sin sesión. Orden estable por ID; no incluye imágenes BLOB.
+      responses:
+        '200':
+          description: Catálogo completo; una lista vacía no es un error.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [productos, whatsapp]
+                properties:
+                  productos:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Producto'
+                  whatsapp:
+                    $ref: '#/components/schemas/WhatsApp'
+        '503':
+          $ref: '#/components/responses/NoDisponible'
+  /productos/{id}/imagen:
+    parameters:
+      - $ref: '#/components/parameters/IdProducto'
+    get:
+      operationId: consultarImagen
+      tags: [Catálogo público]
+      summary: Obtener la copia de imagen conservada por JM-STORE
+      description: |
+        Sin sesión. Content-Type definido por servidor, X-Content-Type-Options
+        nosniff y Cache-Control no-store. Nunca entrega rutas locales.
+        Un fallo de imagen no impide usar el resto de la tarjeta.
+      responses:
+        '200':
+          description: Copia normalizada, independiente del dispositivo original.
+          content:
+            image/webp:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/SolicitudInvalida'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '503':
+          $ref: '#/components/responses/NoDisponible'
+  /sesion:
+    get:
+      operationId: consultarSesion
+      tags: [Sesión del encargado]
+      summary: Consultar si la cookie corresponde a una sesión vigente
+      description: |
+        Responde false sin cookie o si está vencida/revocada; no devuelve token,
+        hash, nombre de usuario ni credenciales. La interfaz falla cerrada si
+        la consulta falla. La cookie se envía automáticamente en el mismo origen.
+      responses:
+        '200':
+          description: Estado actual, con Cache-Control no-store.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstadoSesion'
+        '503':
+          $ref: '#/components/responses/NoDisponible'
+    post:
+      operationId: iniciarSesion
+      tags: [Sesión del encargado]
+      summary: Iniciar sesión con la configuración externa del único encargado
+      description: |
+        Cuerpo máximo 4 KiB. Cinco intentos fallidos por origen de red en 15 min;
+        exceder devuelve 429. No se registran cuerpos ni credenciales.
+        Emite token aleatorio nuevo en cookie; caducidad absoluta de ocho horas.
+      parameters:
+        - $ref: '#/components/parameters/Origen'
+        - $ref: '#/components/parameters/CabeceraMutacion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [usuario, contrasena]
+              properties:
+                usuario:
+                  type: string
+                  minLength: 1
+                contrasena:
+                  type: string
+                  minLength: 1
+                  format: password
+      responses:
+        '200':
+          description: Acceso concedido; autenticado es true.
+          headers:
+            Set-Cookie:
+              description: |
+                Producción __Host-jm_session; HttpOnly, Secure, SameSite=Strict,
+                Path=/, sin Domain, Max-Age máximo 28800 s. Desarrollo local
+                HTTP usa jm_session sin Secure. Nunca devuelve el token en JSON.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstadoSesion'
+        '400':
+          $ref: '#/components/responses/SolicitudInvalida'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '403':
+          $ref: '#/components/responses/OrigenRechazado'
+        '413':
+          $ref: '#/components/responses/CuerpoExcesivo'
+        '422':
+          $ref: '#/components/responses/Validacion'
+        '429':
+          description: Espera temporal; mensaje genérico sin repetir usuario ni red.
+          headers:
+            Retry-After:
+              description: Segundos hasta poder volver a intentar.
+              schema:
+                type: integer
+                minimum: 1
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          $ref: '#/components/responses/NoDisponible'
+    delete:
+      operationId: cerrarSesion
+      tags: [Sesión del encargado]
+      summary: Revocar sesión y vencer cookie
+      description: |
+        Idempotente incluso si la sesión ya venció; no exige una sesión vigente
+        para limpiar la cookie. Sí exige origen y cabecera de mutación.
+        Revoca en servidor antes de responder. La cookie antigua no vuelve a autorizar.
+      parameters:
+        - $ref: '#/components/parameters/Origen'
+        - $ref: '#/components/parameters/CabeceraMutacion'
+      responses:
+        '204':
+          description: Sesión revocada o ya inexistente; sin cuerpo.
+          headers:
+            Set-Cookie:
+              description: Mismo nombre/path/atributos de cookie, con Max-Age=0.
+              schema:
+                type: string
+        '403':
+          $ref: '#/components/responses/OrigenRechazado'
+        '503':
+          $ref: '#/components/responses/NoDisponible'
+  /productos:
+    post:
+      operationId: agregarProducto
+      tags: [Gestión protegida]
+      summary: Guardar un producto y su imagen atómicamente
+      security:
+        - SesionEncargado: []
+      parameters:
+        - $ref: '#/components/parameters/Origen'
+        - $ref: '#/components/parameters/CabeceraMutacion'
+      description: |
+        Solo cuatro campos; exactamente un archivo. Verificar sesión antes del
+        parser multipart. Nombre/descripcion no pueden ser solo espacios.
+        Límites UTF-8: 4096 bytes nombre, 32768 descripcion; archivo 10485760 bytes,
+        máximo 25000000 píxeles. Máximo tres campos de texto y cuatro partes.
+        JPEG, PNG o WebP estático, validado por contenido/decodificación completa,
+        no solo extensión o MIME. Normalizar copia WebP y comprobar también 10 MiB.
+        Configurar límite global del cuerpo con margen para campos y multipart
+        (11 MiB), además de los límites específicos. Sin archivos temporales públicos.
+        Campos no aprobados o partes repetidas se rechazan; nunca se truncan datos.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [nombre, descripcion, precio, imagen]
+              properties:
+                nombre:
+                  type: string
+                  minLength: 1
+                descripcion:
+                  type: string
+                  minLength: 1
+                precio:
+                  type: string
+                  pattern: '^[0-9]+([.,][0-9]{1,2})?$'
+                  description: |
+                    Tras quitar espacios exteriores, mayor que cero; conversión
+                    exacta a céntimos seguros. Sin miles, signo, exponente o redondeo.
+                imagen:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Commit de datos e imagen terminado; no antes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+        '400':
+          $ref: '#/components/responses/SolicitudInvalida'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '403':
+          $ref: '#/components/responses/OrigenRechazado'
+        '413':
+          $ref: '#/components/responses/CuerpoExcesivo'
+        '422':
+          $ref: '#/components/responses/Validacion'
+        '503':
+          $ref: '#/components/responses/NoDisponible'
+  /productos/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdProducto'
+    delete:
+      operationId: eliminarProducto
+      tags: [Gestión protegida]
+      summary: Eliminar únicamente el producto indicado y su imagen
+      description: |
+        Confirmación identificada en la interfaz antes de solicitar. Cancelar
+        no llama a este endpoint. No requiere cuerpo. Un fallo de escritura
+        conserva producto e imagen; no hay borrado lógico ni historial.
+      security:
+        - SesionEncargado: []
+      parameters:
+        - $ref: '#/components/parameters/Origen'
+        - $ref: '#/components/parameters/CabeceraMutacion'
+      responses:
+        '204':
+          description: Eliminación confirmada por commit, sin cuerpo.
+        '400':
+          $ref: '#/components/responses/SolicitudInvalida'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '403':
+          $ref: '#/components/responses/OrigenRechazado'
+        '404':
+          $ref: '#/components/responses/NoEncontrado'
+        '503':
+          $ref: '#/components/responses/NoDisponible'
+components:
+  securitySchemes:
+    SesionEncargado:
+      type: apiKey
+      in: cookie
+      name: __Host-jm_session
+      description: |
+        Cookie de producción, enviada por navegador. En desarrollo local HTTP
+        el nombre es jm_session. Token opaco de 32 bytes; verificador en memoria;
+        vencimiento absoluto ocho horas, logout o reinicio invalidan la sesión.
+  parameters:
+    IdProducto:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Origen:
+      name: Origin
+      in: header
+      required: true
+      description: |
+        El navegador la incorpora; debe igualar exactamente APP_ORIGIN.
+        Ausente, null o diferente se rechaza sin modificar datos.
+      schema:
+        type: string
+        format: uri
+    CabeceraMutacion:
+      name: X-JM-STORE-Request
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: ['1']
+  schemas:
+    Producto:
+      type: object
+      additionalProperties: false
+      required: [id, nombre, descripcion, precioCentimos, imagenUrl]
+      properties:
+        id:
+          type: string
+          format: uuid
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        precioCentimos:
+          type: integer
+          format: int64
+          minimum: 1
+          maximum: 9007199254740991
+        imagenUrl:
+          type: string
+          description: Ruta relativa del mismo origen /api/productos/{id}/imagen.
+          pattern: '^/api/productos/[0-9a-fA-F-]+/imagen$'
+    WhatsApp:
+      type: object
+      additionalProperties: false
+      required: [disponible, destino]
+      description: |
+        disponible true exige destino válido en dígitos; false exige destino null.
+        No es validación de cuenta activa y nunca publica configuración defectuosa.
+      properties:
+        disponible:
+          type: boolean
+        destino:
+          type: string
+          nullable: true
+          pattern: '^[1-9][0-9]{1,14}$'
+    EstadoSesion:
+      type: object
+      additionalProperties: false
+      required: [autenticado]
+      properties:
+        autenticado:
+          type: boolean
+    Error:
+      type: object
+      additionalProperties: false
+      required: [codigo, mensaje]
+      properties:
+        codigo:
+          type: string
+          enum:
+            - SOLICITUD_INVALIDA
+            - ACCESO_REQUERIDO
+            - ACCESO_INCORRECTO
+            - ORIGEN_RECHAZADO
+            - NO_ENCONTRADO
+            - CUERPO_EXCESIVO
+            - DATOS_INVALIDOS
+            - INTENTOS_EXCEDIDOS
+            - SERVICIO_NO_DISPONIBLE
+        mensaje:
+          type: string
+          description: Español, sin valores de entrada, SQL, rutas ni secretos.
+        campos:
+          type: object
+          additionalProperties: false
+          description: Solo en validación; mensajes seguros asociados a campos.
+          properties:
+            nombre:
+              type: string
+            descripcion:
+              type: string
+            precio:
+              type: string
+            imagen:
+              type: string
+            usuario:
+              type: string
+            contrasena:
+              type: string
+  responses:
+    SolicitudInvalida:
+      description: Cuerpo, partes, campos o identificador mal formados; sin cambios.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoAutorizado:
+      description: Acceso incorrecto o sesión ausente, vencida o revocada; sin cambios.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    OrigenRechazado:
+      description: Origen o cabecera de mutación rechazados; sin cambios.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoEncontrado:
+      description: Producto o imagen no disponibles; ningún otro producto afectado.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    CuerpoExcesivo:
+      description: Límite de cuerpo, archivo o campo excedido; sin cambios.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Validacion:
+      description: Datos o imagen inválidos; campos por corregir; ninguna alta.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoDisponible:
+      description: |
+        Fallo de lectura, acceso técnico o persistencia; mensaje seguro en español.
+        Una escritura fallida antes del commit no modifica productos existentes.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

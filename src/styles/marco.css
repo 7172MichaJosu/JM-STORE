@@ -1,0 +1,17 @@
+.franja { background: var(--verde); color: #f5f5e9; text-align: center; padding: 10px 20px; font-size: .74rem; letter-spacing: .03em; }
+.cabecera { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 26px; }
+.marca { display: inline-flex; gap: 12px; align-items: center; text-decoration: none; font-weight: 800; letter-spacing: -.04em; font-size: 1.24rem; flex-shrink: 0; }
+.marca-simbolo { width: 46px; height: 46px; border-radius: 13px; background: var(--verde); color: #f1e6cb; display: grid; place-content: center; position: relative; font-size: 18px; }
+.marca-simbolo span { position: absolute; bottom: 7px; right: 7px; font-size: .3rem; color: #efbd83; }
+.marca small { display: block; margin-top: 3px; font-size: .51rem; letter-spacing: .21em; font-weight: 600; color: var(--suave); }
+.cabecera nav { display: flex; align-items: center; flex-wrap: wrap; gap: 30px; font-size: .82rem; }
+.cabecera nav a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; }
+.cabecera nav a:hover { color: var(--acento); }
+.nav-activo { font-weight: 700; border-bottom: 2px solid var(--verde); }
+.nav-encargado { color: var(--suave); }
+.pie { border-top: 1px solid var(--borde); margin-top: 80px; padding-block: 34px; display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-size: .77rem; }
+.pie p { margin: 0; color: var(--suave); }
+.marca-pie { text-decoration: none; font-weight: 850; font-size: 1.1rem; letter-spacing: -.04em; display: inline-flex; align-items: center; min-height: 44px; }
+.marca-pie span { color: var(--acento); font-size: .5rem; margin-left: 4px; }
+.pie>a:last-child { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
+@media (max-width: 760px) { .cabecera { flex-wrap: wrap; gap: 10px; padding-block: 20px; } .cabecera nav { gap: 18px; } .pie { align-items: start; flex-direction: column; margin-top: 48px; } }

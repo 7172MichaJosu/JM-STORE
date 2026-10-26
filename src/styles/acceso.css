@@ -1,0 +1,6 @@
+.acceso-pagina { padding-block: 34px 20px; }
+.acceso-panel { max-width: 480px; margin: 20px auto; background: white; border: 1px solid var(--borde); border-radius: 26px; padding: 38px; box-shadow: 0 18px 70px #173f3507; animation: aparecer 180ms ease-out; }
+.acceso-icono { width: 56px; height: 56px; background: #ecf0e6; border-radius: 16px; display: grid; place-items: center; margin-bottom: 24px; }
+.acceso-panel .etiqueta { font-size: .64rem; }.acceso-panel h1 { font-size: 1.9rem; font-weight: 600; margin: 16px 0 12px; line-height: 1.15; }.acceso-panel>p { font-size: .85rem; }
+.acceso-panel form { margin-top: 28px; }.acceso-enviar { width: 100%; justify-content: space-between; margin-top: 8px; font-size: .85rem; }.acceso-volver { display: inline-flex; align-items: center; min-height: 44px; font-size: .78rem; color: var(--suave); margin-top: 20px; }.espera-acceso { display: block; margin-top: 8px; font-size: .85em; }
+@media (max-width: 520px) { .acceso-panel { padding: 26px 20px; } }

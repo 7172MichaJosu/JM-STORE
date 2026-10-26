@@ -1,0 +1,30 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 0; }
+button, input, textarea { font: inherit; }
+a { color: inherit; text-underline-offset: 4px; }
+button, .boton { min-height: 46px; padding: 12px 20px; border: 1px solid transparent; border-radius: 12px; font-weight: 650; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; line-height: 1.4; transition: background 180ms, box-shadow 180ms, transform 180ms; }
+button, .boton-primario { background: var(--verde); color: white; }
+button:hover:not(:disabled), .boton-primario:hover { background: var(--verde-hover); }
+button:active:not(:disabled), .boton:active { transform: translateY(1px); }
+button:disabled { cursor: not-allowed; opacity: .65; }
+.boton-secundario { border-color: var(--borde); background: white; color: var(--tinta); }
+.boton-secundario:hover:not(:disabled) { background: #eef2eb; }
+.boton-peligro { background: var(--rojo); color: white; }
+:focus-visible { outline: 3px solid #a05426; outline-offset: 4px; }
+h1, h2, h3, p { margin-top: 0; overflow-wrap: anywhere; }
+h1, h2, h3 { letter-spacing: -.035em; }
+p { line-height: 1.65; }
+img, svg { max-width: 100%; }
+svg { flex-shrink: 0; }
+.contenedor { width: min(1240px, calc(100% - 64px)); margin-inline: auto; }
+.etiqueta { display: inline-flex; align-items: center; gap: 9px; text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 750; }
+.texto-suave { color: var(--suave); }
+.aviso { border: 1px solid var(--borde); background: #edf3ed; border-radius: 12px; padding: 14px 18px; line-height: 1.5; overflow-wrap: anywhere; }
+.error { color: #89212b; background: #fff0ee; border-color: #e6b4b2; }
+.saltar { position: absolute; left: 20px; top: -100px; z-index: 20; background: white; padding: 14px; }
+.saltar:focus { top: 12px; }
+.solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (max-width: 600px) { .contenedor { width: calc(100% - 32px); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } html { scroll-behavior: auto; } }
