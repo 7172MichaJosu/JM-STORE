@@ -1,0 +1,34 @@
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; border-radius: 30px; overflow: hidden; background: #eeefe6; min-height: 460px; }
+.hero-texto { padding: 58px 52px; }
+.punto { width: 7px; height: 7px; border-radius: 50%; background: var(--acento); }
+.hero h1 { font-size: clamp(2.6rem, 4.3vw, 4.15rem); line-height: 1.06; font-weight: 550; margin: 28px 0 22px; letter-spacing: -.06em; }
+.hero h1 em { font-family: Georgia, serif; font-weight: 500; color: #596d4d; }
+.hero-texto>p { max-width: 350px; color: var(--suave); font-size: .9rem; margin-bottom: 28px; }
+.hero .boton { font-size: .8rem; padding: 14px 22px; }
+.hero-nota { display: flex; align-items: center; gap: 7px; font-size: .67rem; margin-top: 18px; color: var(--suave); }
+.hero-nota span { height: 5px; width: 5px; background: #6e805e; border-radius: 50%; }
+.hero-arte { position: relative; isolation: isolate; display: grid; place-items: center; background: #e4e6d8; overflow: hidden; min-height: 440px; }
+.arte-circulo { position: absolute; width: 350px; height: 350px; border-radius: 50%; border: 1px solid #a6b19870; right: -80px; top: -110px; }
+.arte-circulo::after { content: ''; position: absolute; inset: 22px; border: 1px solid #a6b19870; border-radius: 50%; }
+.arte-arco { width: 245px; height: 315px; background: var(--verde); border-radius: 150px 150px 18px 18px; transform: rotate(-8deg); box-shadow: 16px 22px 0 #cbd0bd; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #efe8d4; position: relative; }
+.arte-arco>span { font-family: Georgia, serif; font-size: 6.5rem; letter-spacing: -.12em; padding-right: .12em; }
+.arte-punto { color: #d3a574; }
+.arte-arco small { font-size: .46rem; letter-spacing: .28em; margin-top: 12px; }
+.arte-sello { position: absolute; right: 20px; bottom: 60px; padding: 27px 30px; background: #9c5d3b; color: #fff7ed; border-radius: 50%; width: 140px; height: 140px; transform: rotate(10deg); line-height: 1.45; font-family: Georgia, serif; font-size: 1.2rem; }
+.arte-estrella { color: #a55e37; position: absolute; left: 32px; top: 48px; font-size: 3.4rem; line-height: 1; }
+.arte-pie { position: absolute; bottom: 25px; left: 25px; font-size: .51rem; letter-spacing: .24em; }
+.pasos { display: grid; grid-template-columns: repeat(3, 1fr); margin-block: 28px 58px; border-bottom: 1px solid var(--borde); padding: 6px 10px 28px; gap: 20px; }
+.paso { display: flex; gap: 16px; align-items: start; }
+.paso>span { font-size: .68rem; border: 1px solid var(--borde); border-radius: 50%; min-width: 35px; height: 35px; display: grid; place-content: center; color: var(--suave); }
+.paso strong { font-size: .8rem; }.paso p { font-size: .73rem; color: var(--suave); margin: 4px 0 0; }
+.catalogo { scroll-margin-top: 24px; }
+.titulo-seccion { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: end; margin-bottom: 28px; }
+.titulo-seccion .etiqueta { font-size: .63rem; }
+.titulo-seccion h2 { font-size: 2rem; font-weight: 600; margin: 10px 0 0; line-height: 1.2; }
+.titulo-seccion h2 span { color: var(--acento); }
+.contador { font-size: .72rem; border: 1px solid var(--borde); border-radius: 30px; padding: 9px 14px; color: var(--suave); }
+.estado-catalogo { border: 1px dashed #c3cebf; background: #f0f2ea; border-radius: var(--radio); padding: 46px 24px; text-align: center; }
+.estado-icono { display: grid; place-items: center; width: 64px; height: 64px; background: #e2e9dc; border-radius: 50%; margin: 0 auto 20px; }
+.estado-catalogo h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }.estado-catalogo p { color: var(--suave); font-size: .85rem; margin-bottom: 0; }.estado-catalogo button { margin-top: 20px; }
+@media (max-width: 900px) { .hero-texto { padding: 42px 30px; } .arte-arco { width: 200px; height: 270px; } .arte-sello { right: 10px; bottom: 60px; } }
+@media (max-width: 660px) { .hero { grid-template-columns: 1fr; border-radius: 24px; }.hero-texto { padding: 36px 26px; }.hero h1 { font-size: 2.8rem; }.hero-arte { min-height: 280px; }.arte-arco { width: 160px; height: 210px; }.arte-arco>span { font-size: 4.5rem; }.arte-sello { width: 110px; height: 110px; font-size: .95rem; padding: 20px; bottom: 32px; right: 20px; }.arte-estrella { top: 20px; }.pasos { grid-template-columns: 1fr; margin-bottom: 36px; }.titulo-seccion h2 { font-size: 1.7rem; } }
