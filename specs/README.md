@@ -1,8 +1,8 @@
 # Estado del producto — JM-STORE
 
-**Actualizado**: 2026-10-26
+**Actualizado**: 2026-10-27
 
-La aplicación conserva la [base funcional 001](001-catalogo-pedidos-whatsapp/spec.md) y aplica el [rediseño visual 002](002-rediseno-visual/spec.md), conforme a [Constitution 1.0.0](../.specify/memory/constitution.md) y [AGENTS.md](../AGENTS.md). La feature 002 permanece abierta en Implement; su aceptación total aún no está aprobada.
+La aplicación conserva la [base funcional 001](001-catalogo-pedidos-whatsapp/spec.md) y aplica el [rediseño visual 002](002-rediseno-visual/spec.md), conforme a [Constitution 1.0.0](../.specify/memory/constitution.md) y [AGENTS.md](../AGENTS.md). El usuario autorizó el cierre Git de 002; su aceptación total sigue abierta y no está aprobada.
 
 | Funcionalidad | Estado efectivo |
 | --- | --- |
@@ -17,7 +17,7 @@ Los comandos reales están en [README](../README.md) y la [guía de validación]
 
 El responsable indicó que los ensayos presenciales se realizarán después: celular físico/otro dispositivo con HTTPS y cinco participantes nuevos. También falta destino comercial autorizado/acceso real a WhatsApp para revisar tres borradores sin enviarlos. Las pruebas automatizadas los complementan; no los sustituyen. No se elige proveedor de alojamiento ni se despliega.
 
-Únicamente fase Implement: sin commit, push, merge o cierre de la feature. Las decisiones históricas de Spec/Plan/Tasks se conservan en sus artefactos.
+La fase Implement se entregó originalmente sin commit, push, merge o cierre. Las decisiones históricas de Spec/Plan/Tasks se conservan en sus artefactos; las solicitudes Git posteriores se registran a continuación.
 
 ## Nueva feature — 002 Rediseño visual
 
@@ -26,3 +26,5 @@ La [spec de rediseño visual](002-rediseno-visual/spec.md) está en la rama `002
 Specify, Clarify, [Plan](002-rediseno-visual/plan.md) y [Tasks](002-rediseno-visual/tasks.md) se completaron antes de implementar. Implement registra 62 tareas completas y cinco pendientes de aceptación externa: WhatsApp real, copia previa, dispositivos/lectura asistida, participantes y decisión final. Resultado: 33/33 pruebas Node, 140/140 E2E y cuatro baselines revisadas verificadas. Consultar [evidencia final](002-rediseno-visual/evidencia/aceptacion.md) y [quickstart](002-rediseno-visual/quickstart.md). Se conservan las aceptaciones pendientes de 001; no hubo commit, push, merge ni cierre.
 
 Solicitud posterior a Implement: el usuario autorizó commit y push de todos los cambios pendientes a `002-rediseno-visual`. La rama conserva el estado de aceptación descrito; no se solicitó su cierre ni fusión con `main`.
+
+Solicitud del 2026-10-27: cierre Git de `002-rediseno-visual`, con fusión `--no-ff` en `main`, eliminación de ambas ramas de la feature y subida de `main`, condicionado a pruebas correctas. La aceptación funcional continúa pendiente: T024, T046, T059, T065 y T067 permanecen sin marcar. Consultar [registro de revisión y pruebas de cierre](002-rediseno-visual/evidencia/cierre-git.md).

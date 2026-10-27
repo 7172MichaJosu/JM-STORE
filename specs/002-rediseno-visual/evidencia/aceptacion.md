@@ -1,6 +1,6 @@
 # Estado de aceptación — 002-rediseno-visual
 
-**Implementación técnica completa y verificada; aceptación total pendiente. Feature abierta en Implement.** No se ejecutó commit, push, merge, despliegue ni cierre.
+**Implementación técnica completa y verificada; aceptación total pendiente.** El cierre Git fue solicitado el 2026-10-27; no completa la aceptación funcional. Al finalizar la ejecución original de Implement no se había realizado commit, push, merge, despliegue ni cierre.
 
 | Requisito | Evidencia / estado |
 | --- | --- |
@@ -54,3 +54,7 @@ Decisión de esta ejecución: omitido por la prohibición expresa del usuario. N
 ## Solicitud posterior: entrega al repositorio
 
 Después de finalizar Implement, el usuario autorizó crear el commit y subir todos los cambios pendientes a la rama `002-rediseno-visual`. La restricción anterior de no hacer commit/push correspondía a aquella ejecución. Esta nueva autorización mantiene las cinco tareas de aceptación pendientes y la feature abierta.
+
+## Solicitud posterior: cierre Git — 2026-10-27
+
+El usuario solicitó aplicar la convención de cierre de AGENTS.md después de verificar cambios y pruebas. La fusión y eliminación de la rama pertenecen al ciclo Git; la aceptación total continúa abierta. T024, T046, T059, T065 y T067 conservan su estado pendiente. No se aprueban WhatsApp real, catálogo previo, dispositivo/lectura asistida ni participantes por el resultado de pruebas automatizadas. El [registro de cierre](cierre-git.md) recoge la revisión técnica y la ejecución previa a la integración.

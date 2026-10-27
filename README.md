@@ -58,6 +58,8 @@ Registro del 2026-10-26: 33/33 pruebas Node y 140/140 E2E; posteriormente 4/4 co
 
 Consulta [quickstart 002](specs/002-rediseno-visual/quickstart.md), [tasks](specs/002-rediseno-visual/tasks.md), [archivos modificados](specs/002-rediseno-visual/evidencia/archivos-modificados.md) y [evidencia final](specs/002-rediseno-visual/evidencia/regresion-final.md). La [guía 001](specs/001-catalogo-pedidos-whatsapp/quickstart.md) y sus [pendientes](specs/001-catalogo-pedidos-whatsapp/tasks.md) conservan el historial funcional.
 
-La aceptación total sigue pendiente de WhatsApp real, comparación del catálogo previo, dispositivo/lectura asistida y cinco participantes. La feature permanece abierta; no se realizó commit, push, merge ni publicación.
+La aceptación total sigue pendiente de WhatsApp real, comparación del catálogo previo, dispositivo/lectura asistida y cinco participantes. Al terminar Implement, no se había realizado commit, push, merge ni publicación.
 
 Después de Implement, el usuario autorizó registrar y subir todos los cambios pendientes a la rama `002-rediseno-visual`. Esta entrega al repositorio conserva las aceptaciones pendientes y la feature abierta.
+
+El 2026-10-27 el usuario solicitó cerrar la rama conforme a AGENTS.md. Este cierre Git conserva pendientes T024, T046, T059, T065 y T067; no constituye aceptación funcional ni despliegue. El [registro de cierre](specs/002-rediseno-visual/evidencia/cierre-git.md) documenta la revisión y las pruebas previas a la integración.

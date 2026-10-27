@@ -1,10 +1,12 @@
 # Tasks: JM-STORE — Rediseño visual claro, oscuro y panel del encargado
 
-**Rama**: `002-rediseno-visual` · **Fecha**: 2026-10-26 · **Fase actual**: Implement técnico verificado; aceptación externa pendiente.
+**Rama de desarrollo**: `002-rediseno-visual` · **Fecha**: 2026-10-26 · **Fase actual**: Implement técnico verificado; cierre Git autorizado el 2026-10-27; aceptación externa pendiente.
 
 **Input**: [spec y cinco aclaraciones](spec.md), [plan](plan.md), [research](research.md), [modelo](data-model.md), [contrato visual](contracts/interfaz-visual.md), [estado/navegación](contracts/estado-y-navegacion.md), [compatibilidad](contracts/compatibilidad.md) y [quickstart](quickstart.md). Rigen [AGENTS.md](../../AGENTS.md) y [Constitution 1.0.0](../../.specify/memory/constitution.md).
 
 **Estado**: 62 tareas completas y cinco pendientes: T024, T046, T059, T065 y T067. Las casillas reflejan evidencia ejecutada. La spec, las cinco aclaraciones, plan.md y contratos permanecen intactos; quickstart registra ahora los resultados autorizados por T066.
+
+**Cierre Git solicitado**: se aplica la convención de AGENTS.md por autorización expresa del usuario. La integración y retirada de la rama no completan T067 ni las cuatro validaciones externas de las que depende. Se conservan las cinco casillas pendientes y los criterios aprobados. Revisión y resultados de esta ejecución en [cierre-git.md](evidencia/cierre-git.md).
 
 **Tests**: incluidos porque la spec, el plan y la petición exigen verificaciones de fidelidad, accesibilidad, rendimiento, compatibilidad y regresión. Escribir primero los casos nuevos que correspondan al comportamiento por construir y comprobar su fallo significativo antes del cambio; conservar verdes los casos ya satisfechos y las regresiones existentes, sin provocar fallos artificiales ni rebajar los criterios.
 
