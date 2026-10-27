@@ -1,0 +1,11 @@
+.ficha-pagina { padding-block: 32px 56px; min-height: 65vh; }
+.ficha-volver { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 22px; font-weight: 700; }
+.ficha-producto { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 40px; padding: 32px; border: 1px solid var(--borde-decorativo); border-radius: 28px; background: var(--superficie); box-shadow: var(--sombra); }
+.imagen-ficha { height: 440px; }
+.ficha-datos { min-width: 0; }
+.ficha-datos h1 { font-size: clamp(1.6rem,3vw,2.5rem); margin-block: 14px 20px; }
+.ficha-descripcion { white-space: pre-wrap; color: var(--texto-secundario); }
+.ficha-precio { font-size: 2rem; font-weight: 800; margin-block: 24px; }
+.ficha-datos .boton { max-width: 100%; }
+@media(max-width: 900px) { .ficha-producto { grid-template-columns: minmax(0,1fr); padding: 22px; gap: 24px; }.imagen-ficha { height: 320px; } }
+@media(max-width: 639px) { .ficha-producto { padding: 18px; }.imagen-ficha { height: 250px; } }

@@ -1,5 +1,15 @@
 import { test, expect, ingresar, llenarProducto, usarCatalogoVisual } from '../fixtures/navegador.mjs';
 
+test('ficha y carrusel manual entre navegadores', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/');
+  const c = page.getByRole('region', { name: 'Productos del catálogo' }); await expect(c).toBeVisible();
+  const antes = await c.getAttribute('data-activo');
+  await c.getByRole('button', { name: 'Producto siguiente' }).click();
+  expect(await c.getAttribute('data-activo')).not.toBe(antes);
+  await c.locator('.carrusel-nombre').click();
+  await expect(page.locator('.ficha-producto')).toBeVisible();
+});
+
 test('recorrido básico público, acceso, alta, eliminación y cierre', async ({ page }, info) => {
   await page.goto('/'); await expect(page.getByRole('article')).toHaveCount(20);
   await info.attach('catalogo-escritorio', { body: await page.screenshot(), contentType: 'image/png' });

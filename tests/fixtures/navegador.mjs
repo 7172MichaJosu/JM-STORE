@@ -42,8 +42,9 @@ export async function llenarProducto(page, nombre = 'Producto nuevo ficticio') {
   await expect(preview).toBeVisible(); await expect.poll(() => preview.evaluate(img => img.complete && img.naturalWidth > 0)).toBeTruthy();
 }
 export async function habilitarDestino(page) {
-  await page.route('**/api/catalogo', async route => {
+  await page.route(/\/api\/(?:catalogo|productos\/[^/]+)$/, async route => {
+    if (route.request().method() !== 'GET') return route.continue();
     const res = await route.fetch(); const datos = await res.json();
-    await route.fulfill({ json: { ...datos, whatsapp: { disponible: true, destino: '12025550123' } } });
+    await route.fulfill({ status: res.status(), json: { ...datos, whatsapp: { disponible: true, destino: '12025550123' } } });
   });
 }

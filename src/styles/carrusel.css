@@ -1,0 +1,33 @@
+.carrusel { width: 100%; min-width: 0; z-index: 2; position: relative; }
+.hero .hero-arte:has(.carrusel) { min-height: 496px; padding-block: 72px 36px; }
+.hero .hero-arte:has(.carrusel) .escena-distintivo { top: 8px; }
+.hero .hero-arte:has(.carrusel) .escena-base { bottom: 190px; }
+.carrusel-cabecera { width: 80%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.carrusel-contador { color: var(--texto-secundario); font-size: .75rem; font-weight: 750; }
+.carrusel-flechas { display: flex; gap: 8px; flex-shrink: 0; }
+.carrusel .carrusel-flecha { width: 46px; height: 46px; padding: 10px; border-radius: 50%; color: var(--texto); background: var(--superficie); border: 1px solid var(--borde-control); box-shadow: var(--sombra); }
+.carrusel-superficie { touch-action: pan-y pinch-zoom; user-select: none; }
+.carrusel .hero-producto { margin: 0 auto; height: 180px; }
+.hero .carrusel-foto .imagen-portada img { padding: 8px; }
+.carrusel-foto { animation: carrusel-entrada 240ms ease-out; }
+.carrusel-datos { width: 80%; margin: 12px auto 8px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.carrusel-datos h2 { min-width: 0; font-size: 1.05rem; line-height: 1.45; margin: 0; }
+.carrusel-nombre { display: -webkit-box; min-height: 44px; min-width: 44px; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-decoration-thickness: 1px; }
+.carrusel-datos p { flex-shrink: 0; margin: 0; font-weight: 800; font-size: 1.15rem; }
+.carrusel-miniaturas { width: 80%; margin-inline: auto; display: flex; gap: 10px; padding: 6px; overflow-x: auto; scrollbar-width: thin; border-radius: 16px; }
+.carrusel .carrusel-miniatura { width: 60px; height: 60px; flex: 0 0 60px; padding: 4px; background: var(--superficie); border: 2px solid var(--borde-control); border-radius: 14px; box-shadow: none; }
+.carrusel-miniatura[aria-current="true"] { border-color: var(--foco); box-shadow: 0 0 0 2px var(--foco); }
+.carrusel-miniatura .imagen-producto { width: 100%; height: 100%; border-radius: 8px; }
+.carrusel-miniatura img { padding: 2px; }
+.carrusel-miniatura .imagen-faltante { padding: 0; }
+.carrusel-miniatura .imagen-faltante span { display: none; }
+.sin-transicion { animation: none; }
+@keyframes carrusel-entrada { from { opacity: .25; } to { opacity: 1; } }
+@media(max-width: 639px) {
+ .hero .hero-arte:has(.carrusel) { min-height: 490px; padding-block: 60px 28px; }
+ .carrusel .hero-producto { height: 180px; }
+ .carrusel-cabecera, .carrusel-datos, .carrusel-miniaturas { width: 100%; }
+ .carrusel-datos { gap: 10px; }.carrusel-datos h2 { font-size: .95rem; }.carrusel-datos p { font-size: 1rem; }
+ .hero .hero-arte:has(.carrusel) .escena-base { bottom: 180px; }
+}
+@media(prefers-reduced-motion: reduce) { .carrusel-foto { animation: none; } }

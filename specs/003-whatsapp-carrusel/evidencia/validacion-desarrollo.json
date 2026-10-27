@@ -1,0 +1,9 @@
+{
+  "vite": true,
+  "fichaDirecta": true,
+  "imagen": true,
+  "enlaceLocal": true,
+  "strictModeUnAvance": true,
+  "productos": 2,
+  "apiAisladaSoloLectura": true
+}

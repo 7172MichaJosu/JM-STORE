@@ -1,0 +1,288 @@
+{
+  "productos": 20,
+  "esquemaIdentico": true,
+  "antes": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "nombre": "Taza & café + plato",
+      "precioCentimos": 4990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "33b9c1fcbf8b56abd44257ea9bf13d2cfc796ef1d794f888c48f301c44e5bfd4"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000002",
+      "nombre": "Lámpara de mesa",
+      "precioCentimos": 8900,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "6605c57e13cd393f9573e33017fa01aff2ea2c11bf3a0e1dc11ee93ca859d34f"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "nombre": "Bolso de algodón",
+      "precioCentimos": 3550,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "7016579ade3ed20f4d88dd834809b97053a502f5a11a96323383bf877b9dd2ae"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000004",
+      "nombre": "Nombre repetido",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "4707fdac02187dac4e7bb1785e0a26ef741f50d17c4217028485efa0f994659a"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000005",
+      "nombre": "Nombre repetido",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "89a358d9412ab6a0e2e31b59d3dd249952aca787000b57d41c8754e9866d9eda"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000006",
+      "nombre": "Producto de prueba 6",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "40f31291c6481efc5b63753cecf73c80d60e08faee4935a0acc54ed9bf255b4e"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000007",
+      "nombre": "Producto de prueba 7",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "e569c8a6a583a4f6127d354ead8c5c8fa49ffced131dee1e60ba70131cde2247"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000008",
+      "nombre": "Producto de prueba 8",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "59021a1b593d382458c717f016ac73ec338e71e2ae2df838dabd199e6982161b"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000009",
+      "nombre": "Producto de prueba 9",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "dbcc7740d7a64ab7c8472eed80adcdf20193069b8420b34037bfc9c1e5b9c8f0"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000010",
+      "nombre": "Producto de prueba 10",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "fef0647bd6c772b99f5e08345e377933806fced7285a5f40e2a9aeefa3947424"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000011",
+      "nombre": "Producto de prueba 11",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "24148b469e47b8b206e715172910429ec71bd009549a7e47e123b86877f70b3e"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000012",
+      "nombre": "Producto de prueba 12",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "fb8f971a347d29081557a150050d90944c613a02c16a3db74eeb33e2681f5fed"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000013",
+      "nombre": "Producto de prueba 13",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "a9a539796fd687f076d3f4dc66eb303e84116adfebc29f0420d038911fda94bb"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000014",
+      "nombre": "Producto de prueba 14",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "6b6457039c64285e7151c4125752f3e802867e9f6fc1b1a09f148a90527709d5"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000015",
+      "nombre": "Producto de prueba 15",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "81c02a75e4257fcbbc958e39d6549940bf63beeb0ec2dc055950ade8ccdd4cb9"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000016",
+      "nombre": "Producto de prueba 16",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "d60b6ea16825214eb6ee921ff3d576d99df7ec89b01733de3816a8d1eef5adbf"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000017",
+      "nombre": "Producto de prueba 17",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "0d332509e57c71720c4e97876da5ea63b9f48fec70b44a3a738964b5953254ae"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000018",
+      "nombre": "Producto de prueba 18",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "1991d22549197903c366d03a493e580d43637760a72137cbfa555ff0a4d16586"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000019",
+      "nombre": "Producto de prueba 19",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "84ae6dfbbc29767996d0be0d23c788a658daba9710bb4ebf63f8a0c489bda2c2"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000020",
+      "nombre": "Producto de prueba 20",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "04ddecb121b2c7482f9466dd20ea841330c58b495a25d9a37a73d43b87a5aa37"
+    }
+  ],
+  "despues": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "nombre": "Taza & café + plato",
+      "precioCentimos": 4990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "33b9c1fcbf8b56abd44257ea9bf13d2cfc796ef1d794f888c48f301c44e5bfd4"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000002",
+      "nombre": "Lámpara de mesa",
+      "precioCentimos": 8900,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "6605c57e13cd393f9573e33017fa01aff2ea2c11bf3a0e1dc11ee93ca859d34f"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "nombre": "Bolso de algodón",
+      "precioCentimos": 3550,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "7016579ade3ed20f4d88dd834809b97053a502f5a11a96323383bf877b9dd2ae"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000004",
+      "nombre": "Nombre repetido",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "4707fdac02187dac4e7bb1785e0a26ef741f50d17c4217028485efa0f994659a"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000005",
+      "nombre": "Nombre repetido",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "89a358d9412ab6a0e2e31b59d3dd249952aca787000b57d41c8754e9866d9eda"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000006",
+      "nombre": "Producto de prueba 6",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "40f31291c6481efc5b63753cecf73c80d60e08faee4935a0acc54ed9bf255b4e"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000007",
+      "nombre": "Producto de prueba 7",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "e569c8a6a583a4f6127d354ead8c5c8fa49ffced131dee1e60ba70131cde2247"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000008",
+      "nombre": "Producto de prueba 8",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "59021a1b593d382458c717f016ac73ec338e71e2ae2df838dabd199e6982161b"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000009",
+      "nombre": "Producto de prueba 9",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "dbcc7740d7a64ab7c8472eed80adcdf20193069b8420b34037bfc9c1e5b9c8f0"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000010",
+      "nombre": "Producto de prueba 10",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "fef0647bd6c772b99f5e08345e377933806fced7285a5f40e2a9aeefa3947424"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000011",
+      "nombre": "Producto de prueba 11",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "24148b469e47b8b206e715172910429ec71bd009549a7e47e123b86877f70b3e"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000012",
+      "nombre": "Producto de prueba 12",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "fb8f971a347d29081557a150050d90944c613a02c16a3db74eeb33e2681f5fed"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000013",
+      "nombre": "Producto de prueba 13",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "a9a539796fd687f076d3f4dc66eb303e84116adfebc29f0420d038911fda94bb"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000014",
+      "nombre": "Producto de prueba 14",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "6b6457039c64285e7151c4125752f3e802867e9f6fc1b1a09f148a90527709d5"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000015",
+      "nombre": "Producto de prueba 15",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "81c02a75e4257fcbbc958e39d6549940bf63beeb0ec2dc055950ade8ccdd4cb9"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000016",
+      "nombre": "Producto de prueba 16",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "d60b6ea16825214eb6ee921ff3d576d99df7ec89b01733de3816a8d1eef5adbf"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000017",
+      "nombre": "Producto de prueba 17",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "0d332509e57c71720c4e97876da5ea63b9f48fec70b44a3a738964b5953254ae"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000018",
+      "nombre": "Producto de prueba 18",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "1991d22549197903c366d03a493e580d43637760a72137cbfa555ff0a4d16586"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000019",
+      "nombre": "Producto de prueba 19",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "84ae6dfbbc29767996d0be0d23c788a658daba9710bb4ebf63f8a0c489bda2c2"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000020",
+      "nombre": "Producto de prueba 20",
+      "precioCentimos": 2990,
+      "imagenSha256": "faa7011733d35a7fd6cea9ed4f9db931422ee79a49e5448c767cb81ff4251c05",
+      "filaSha256": "04ddecb121b2c7482f9466dd20ea841330c58b495a25d9a37a73d43b87a5aa37"
+    }
+  ]
+}

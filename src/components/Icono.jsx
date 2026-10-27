@@ -6,6 +6,7 @@ const trazos = {
   brillo: <><path d="m12 2 2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6L12 2Z" /></>,
   escudo: <><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" /><path d="m8 12 3 3 5-6" /></>,
   flecha: <><path d="M5 12h14M12 5l7 7-7 7" /></>,
+  anterior: <><path d="M19 12H5m7-7-7 7 7 7" /></>,
   bolsa: <><path d="M5 7h14l1 14H4L5 7Z" /><path d="M8 8V6a4 4 0 0 1 8 0v2" /></>,
   imagen: <><rect x="3" y="3" width="18" height="18" rx="3" /><circle cx="8" cy="8" r="1" /><path d="m3 17 5-5 4 4 4-6 5 7" /></>,
   whatsapp: <><path d="M20.5 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.1a8.5 8.5 0 1 1 15.6-4.4Z" /><path d="M8 7c-2 3 3 8 6 7l1-2-2-1-1 1c-1.5-.5-2.5-1.5-3-3l1-1-1-2-1 1Z" /></>,

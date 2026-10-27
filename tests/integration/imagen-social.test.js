@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import sharp from 'sharp';
+import {entorno} from '../fixtures/entorno.mjs';
+test('JPEG acotado completo, HEAD, errores y WebP inalterado',async t=>{
+  const e=await entorno();t.after(()=>e.cerrar());
+  const [p]=await e.sembrar([{nombre:'Foto',descripcion:'Vertical',precioCentimos:100}]);
+  const original=await sharp({create:{width:100,height:400,channels:3,background:'#ff0000'}}).webp().toBuffer();
+  e.db.raw.prepare('UPDATE productos SET imagen=? WHERE id=?').run(original,p.id);
+  const ruta='/api/productos/'+p.id+'/imagen-social';const r=await e.pedir(ruta);assert.equal(r.status,200);
+  assert.match(r.headers.get('content-type'),/image\/jpeg/);
+  const jpeg=Buffer.from(await r.arrayBuffer());const m=await sharp(jpeg).metadata();
+  assert.equal(m.width,1200);assert.equal(m.height,630);
+  const {data,info}=await sharp(jpeg).raw().toBuffer({resolveWithObject:true});
+  const pixel=(x,y)=>[...data.subarray((y*info.width+x)*info.channels,(y*info.width+x)*info.channels+3)];
+  assert.ok(pixel(600,315)[0]>240);assert.ok(pixel(5,315)[2]>230);
+  assert.deepEqual(e.db.imagen(p.id).imagen,original);
+  const head=await e.pedir(ruta,{method:'HEAD'});assert.equal(head.status,200);assert.equal((await head.arrayBuffer()).byteLength,0);
+  assert.equal((await e.pedir('/api/productos/mal/imagen-social')).status,400);
+  e.fallos.imagen=true;assert.equal((await e.pedir(ruta)).status,503);e.fallos.imagen=false;
+  e.db.eliminar(p.id);assert.equal((await e.pedir(ruta)).status,404);
+});

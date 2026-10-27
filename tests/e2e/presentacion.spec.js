@@ -39,13 +39,13 @@ for (const tema of ['claro', 'oscuro']) test(`panel ${tema}: composición de ref
   });
   expect(medidas.sidebar).toBeGreaterThanOrEqual(.16); expect(medidas.sidebar).toBeLessThanOrEqual(.20);
   expect(medidas.formulario).toBeGreaterThanOrEqual(.35); expect(medidas.formulario).toBeLessThanOrEqual(.40);
-  await writeFile(`specs/002-rediseno-visual/evidencia/medidas-panel-${tema}.json`, JSON.stringify(medidas, null, 2));
+  await writeFile(`specs/003-whatsapp-carrusel/evidencia/medidas-panel-${tema}.json`, JSON.stringify(medidas, null, 2));
   await page.getByLabel('Imagen', { exact: true }).setInputFiles('tests/fixtures/fotos/audifonos.jpg'); await expect(page.getByRole('img', { name: 'Vista previa de la imagen seleccionada' })).toBeVisible();
   for (const img of await page.locator('.fila-gestion img, .vista-previa img').all()) expect(await img.evaluate(e => getComputedStyle(e).objectFit)).toBe('contain');
   await expect(page.locator('.fila-gestion img')).toHaveCount(3);
   for (const img of await page.locator('.fila-gestion img, .vista-previa img').all()) await expect.poll(() => img.evaluate(e => e.complete && e.naturalWidth > 0)).toBeTruthy();
-  await page.evaluate(() => document.fonts.ready); await mkdir('specs/002-rediseno-visual/evidencia/capturas', { recursive: true });
-  await info.attach(`panel-${tema}-1672`, { body: await page.screenshot({ path: `specs/002-rediseno-visual/evidencia/capturas/panel-${tema}-1672.png`, animations: 'disabled' }), contentType: 'image/png' });
+  await page.evaluate(() => document.fonts.ready); await mkdir('specs/003-whatsapp-carrusel/evidencia/capturas', { recursive: true });
+  await info.attach(`panel-${tema}-1672`, { body: await page.screenshot({ path: `specs/003-whatsapp-carrusel/evidencia/capturas/panel-${tema}-1672.png`, animations: 'disabled' }), contentType: 'image/png' });
   await expect(page).toHaveScreenshot(`panel-${tema}-1672.png`, { animations: 'disabled' });
 });
 
@@ -72,9 +72,9 @@ for (const tema of ['claro', 'oscuro']) {
     expect(medidas.cabecera).toBeGreaterThanOrEqual(80); expect(medidas.cabecera).toBeLessThanOrEqual(96);
     expect(medidas.portada).toBeGreaterThanOrEqual(420); expect(medidas.portada).toBeLessThanOrEqual(500); expect(medidas.columnas).toBe(3);
     await page.evaluate(() => document.fonts.ready);
-    await mkdir('specs/002-rediseno-visual/evidencia/capturas', { recursive: true });
-    await writeFile(`specs/002-rediseno-visual/evidencia/medidas-tienda-${tema}.json`, JSON.stringify(medidas, null, 2));
-    await info.attach(`tienda-${tema}-1672`, { body: await page.screenshot({ path: `specs/002-rediseno-visual/evidencia/capturas/tienda-${tema}-1672.png`, animations: 'disabled' }), contentType: 'image/png' });
+    await mkdir('specs/003-whatsapp-carrusel/evidencia/capturas', { recursive: true });
+    await writeFile(`specs/003-whatsapp-carrusel/evidencia/medidas-tienda-${tema}.json`, JSON.stringify(medidas, null, 2));
+    await info.attach(`tienda-${tema}-1672`, { body: await page.screenshot({ path: `specs/003-whatsapp-carrusel/evidencia/capturas/tienda-${tema}-1672.png`, animations: 'disabled' }), contentType: 'image/png' });
     await expect(page).toHaveScreenshot(`tienda-${tema}-1672.png`, { animations: 'disabled' });
   });
   for (const ancho of [360, 768, 1366]) test(`tarjetas ${tema} a ${ancho}: orientación y texto completo`, async ({ page }) => {
@@ -110,7 +110,7 @@ for (const tema of ['claro', 'oscuro']) for (const ancho of [360, 640, 768, 1200
   }
   for (let rotacion = 0; rotacion < 3; rotacion++) {
     await usarCatalogoVisual(3, rotacion); await page.goto('/'); await expect(page.getByRole('article')).toHaveCount(3);
-    await completa(page.locator('.hero img'), dimensiones[rotacion]);
+    await completa(page.locator('.carrusel-foto img'), dimensiones[rotacion]);
     await sinAdornosEncima();
     {
       await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; }); await sinAdornosEncima();

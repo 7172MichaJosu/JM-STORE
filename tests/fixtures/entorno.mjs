@@ -25,7 +25,8 @@ export async function entorno(opciones = {}) {
   const config = leerConfig({ NODE_ENV: 'development', APP_ORIGIN: 'http://localhost:4175', PORT: '4175', SQLITE_PATH: join(directorio, 'prueba.sqlite'), ADMIN_USERNAME: usuarioPrueba, ADMIN_PASSWORD_HASH: await hashPrueba(), ...opciones.env });
   const db = abrirDB(config.sqlitePath);
   const fallos = {};
-  const app = crearApp({ config, db: conFallos(db, fallos), ...opciones.app });
+  const leerIndiceHtml = () => '<!doctype html><html lang="es-PE"><head><title>JM-STORE</title><meta name="description" content="Catálogo"></head><body><div id="root"></div></body></html>';
+  const app = crearApp({ config, db: conFallos(db, fallos), leerIndiceHtml, ...opciones.app });
   const servidor = app.listen(0, '127.0.0.1');
   await new Promise(resolve => servidor.once('listening', resolve));
   const url = `http://127.0.0.1:${servidor.address().port}`;

@@ -6,7 +6,7 @@ for (const tema of ['claro', 'oscuro']) test.describe(`presentación ${tema}`, (
 test('20 productos, texto completo y seguro, imágenes y teclado', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('article')).toHaveCount(20);
-  await expect(page.getByRole('heading', { name: 'Taza & café + plato', exact: true })).toBeVisible();
+  await expect(page.getByRole('article').getByRole('heading', { name: 'Taza & café + plato', exact: true })).toBeVisible();
   await expect(page.getByText('<script>texto visible</script>', { exact: false })).toBeVisible();
   await expect(page.locator('article').filter({ hasText: 'Taza & café + plato' }).getByText('S/ 49.90', { exact: true })).toBeVisible();
   await page.keyboard.press('Tab'); await expect(page.getByText('Ir al contenido')).toBeFocused();
