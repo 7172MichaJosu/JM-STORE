@@ -327,3 +327,9 @@ Asignar únicamente grupos `[P]` listos y propietarios diferentes de archivos; i
 [Regresión final](evidencia/regresion-final.md): Chromium 134 casos; Firefox y WebKit tres recorridos básicos ampliados cada uno. La última ejecución posterior compara cuatro baselines en Chromium/Windows sin cambios adicionales a la app. Registro de perfil temporal cerrado/reabierto, seis cambios manuales y seis automáticos, foco/File/blob conservados, reducido dinámico y tres proporciones sin adornos encima, incluido texto 200 %.
 
 Pendientes sin marcar: T024 (WhatsApp real autorizado), T046 (copia previa aislada y comparación humana), T059 (dispositivo/HTTPS/tacto/lector), T065 (cinco personas nuevas) y T067 (aceptación total). Detalle en [aceptacion.md](evidencia/aceptacion.md). No hubo modificaciones de credenciales, base real, servidor o dependencias; no se realizó commit, push, merge o cierre.
+
+## Verificación para cierre Git — 2026-10-27
+
+Por solicitud posterior del usuario se aplica el cierre de AGENTS.md. Nueva compilación correcta; `npm test`: 33/33 (14.478 s); batería E2E completa: 140/140 (203.707 s), incluidas las cuatro comparaciones de capturas. Cero fallos, omitidas o pruebas inestables. Se actualizaron únicamente las mediciones de rendimiento generadas por esta ejecución y la documentación de cierre; no se regeneraron baselines.
+
+El [registro de cierre](evidencia/cierre-git.md) conserva la revisión previa, el alcance y los resultados. Permanecen **62/67 tareas completas y cinco pendientes**: T024, T046, T059, T065 y T067. El cierre de la rama no aprueba estas validaciones ni completa la aceptación funcional.
