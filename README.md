@@ -4,6 +4,8 @@ Catálogo público con pedidos individuales por WhatsApp. El encargado inicia se
 
 La feature 002 incorpora portada, tarjetas y panel modernos, Manrope local, modo claro/oscuro, preferencia del dispositivo hasta elegir manualmente y movimiento reducido. Se conserva la base funcional 001 y el catálogo existente. El [registro de implementación](specs/002-rediseno-visual/evidencia/aceptacion.md) distingue lo verificado técnicamente de las aceptaciones externas pendientes.
 
+La feature 003 añade fichas individuales, mensajes WhatsApp con descripción completa y enlace, metadatos Open Graph e imagen social, y carrusel con avance cada cinco segundos, miniaturas, flechas y gesto táctil. Consulta la [guía 003](specs/003-whatsapp-carrusel/quickstart.md), su [evidencia de aceptación](specs/003-whatsapp-carrusel/evidencia/aceptacion.md) y el [registro de revisión para cierre Git](specs/003-whatsapp-carrusel/evidencia/cierre-git.md). La aceptación externa T032–T034 sigue pendiente: requiere HTTPS público, WhatsApp real y ensayos presenciales; localhost no la aprueba.
+
 ## Ejecutar en Windows
 
 Requiere Node.js **24 LTS** y npm. Desde `C:\JM-STORE`:
@@ -52,7 +54,7 @@ npx playwright install chromium firefox webkit
 npm run test:e2e
 ```
 
-Los datos son temporales y el lanzador verifica su ruta antes de limpiar. Chromium cubre la batería completa; Firefox y WebKit ejecutan tres recorridos básicos ampliados por motor. Los enlaces externos se interceptan sin enviar mensajes. El informe HTML se genera en playwright-report/index.html para la última ejecución.
+Los datos son temporales y el lanzador verifica su ruta antes de limpiar. Chromium cubre la batería completa; Firefox y WebKit ejecutan cuatro recorridos básicos ampliados por motor. Los enlaces externos se interceptan sin enviar mensajes. El informe HTML se genera en playwright-report/index.html para la última ejecución.
 
 Registro del 2026-10-26: 33/33 pruebas Node y 140/140 E2E; posteriormente 4/4 comparaciones de capturas revisadas. Las baselines de escritorio usan Chromium/Windows, fuente y datos fijados. No actualizar masivamente las capturas sin revisar sus diferencias.
 

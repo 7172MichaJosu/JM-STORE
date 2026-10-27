@@ -1,0 +1,41 @@
+import {test,expect,usarCatalogoVisual} from '../fixtures/navegador.mjs';
+test('movimiento reducido detiene rotación y conserva navegación y tema',async({page})=>{
+  await page.clock.install();await page.clock.pauseAt(new Date(Date.now()+1000));
+  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
+  const c=page.getByRole('region',{name:'Productos del catálogo'});await expect(c).toBeVisible();
+  const id=await c.getAttribute('data-activo');await page.clock.runFor(30000);await expect(c).toHaveAttribute('data-activo',id);
+  await c.getByRole('button',{name:'Producto siguiente'}).click();
+  const manual=await c.getAttribute('data-activo');expect(manual).not.toBe(id);
+  await page.getByRole('switch').click();await expect(c).toHaveAttribute('data-activo',manual);
+  await page.emulateMedia({reducedMotion:'no-preference'});await page.mouse.move(0,0);
+  await page.evaluate(()=>document.activeElement.blur());await page.clock.runFor(5000);
+  expect(await c.getAttribute('data-activo')).not.toBe(manual);
+  await page.emulateMedia({reducedMotion:'reduce'});const detenido=await c.getAttribute('data-activo');
+  await page.clock.runFor(20000);await expect(c).toHaveAttribute('data-activo',detenido);
+});
+for(const tema of ['light','dark'])for(const ancho of [360,768,1366])test(`adaptación y teclado ${tema} ${ancho}`,async({page},info)=>{
+  await usarCatalogoVisual(3);await page.setViewportSize({width:ancho,height:950});
+  await page.emulateMedia({colorScheme:tema,reducedMotion:'reduce'});await page.goto('/');
+  const c=page.getByRole('region',{name:'Productos del catálogo'});await expect(c).toBeVisible();
+  const next=c.getByRole('button',{name:'Producto siguiente'});
+  await next.focus();await page.keyboard.press('Enter');
+  await expect(c.locator('[aria-current="true"]')).toHaveCount(1);
+  expect(await next.evaluate(e=>e.getBoundingClientRect().width)).toBeGreaterThanOrEqual(44);
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  for(const img of await c.locator('img').all())expect(await img.evaluate(e=>getComputedStyle(e).objectFit)).toBe('contain');
+  await info.attach(`carrusel-${tema}-${ancho}`,{body:await c.screenshot(),contentType:'image/png'});
+});
+test('gesto horizontal, vertical y cancelado sin activar enlaces',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
+  const c=page.getByRole('region',{name:'Productos del catálogo'});await expect(c).toBeVisible();
+  const superficie=c.locator('.carrusel-superficie');const id=await c.getAttribute('data-activo');
+  const ev={pointerType:'touch',pointerId:12,isPrimary:true,clientX:250,clientY:100};
+  await superficie.dispatchEvent('pointerdown',ev);await superficie.dispatchEvent('pointerup',{...ev,clientX:100});
+  expect(await c.getAttribute('data-activo')).not.toBe(id);
+  const siguiente=await c.getAttribute('data-activo');
+  await superficie.dispatchEvent('pointerdown',ev);await superficie.dispatchEvent('pointerup',{...ev,clientY:250});
+  await expect(c).toHaveAttribute('data-activo',siguiente);
+  await superficie.dispatchEvent('pointerdown',ev);await superficie.dispatchEvent('pointercancel',ev);
+  await expect(c).toHaveAttribute('data-activo',siguiente);await expect(page).toHaveURL(/\/$/);
+});

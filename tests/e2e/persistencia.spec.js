@@ -64,7 +64,7 @@ test('reinicio de proceso conserva alta/imagen, eliminación y otro producto; in
     await detener(); await arrancar(); await publica.reload(); await expect(publica.getByRole('article')).toHaveCount(20); expect(instantanea()).toEqual(antes);
     await info.attach('conservacion-esquema-id-orden-hashes', { body: Buffer.from(JSON.stringify({ antes, despues: instantanea() }, null, 2)), contentType: 'application/json' });
     const resumir = estado => estado.productos.map(p => ({ id: p.id, nombre: p.nombre, precioCentimos: p.precio_centimos, imagenSha256: p.sha256, filaSha256: createHash('sha256').update(JSON.stringify(p)).digest('hex') }));
-    await writeFile('specs/002-rediseno-visual/evidencia/conservacion-fixture.json', JSON.stringify({ productos: 20, esquemaIdentico: true, antes: resumir(antes), despues: resumir(instantanea()) }, null, 2));
+    await writeFile('specs/003-whatsapp-carrusel/evidencia/conservacion-fixture.json', JSON.stringify({ productos: 20, esquemaIdentico: true, antes: resumir(antes), despues: resumir(instantanea()) }, null, 2));
     await contexto.close();
   } finally { await detener(); await rm(directorio, { recursive: true, force: true }); }
 });

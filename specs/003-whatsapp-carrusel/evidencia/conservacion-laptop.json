@@ -1,0 +1,11 @@
+{
+  "fecha": "2026-10-27",
+  "productos": 2,
+  "fotografias": 2,
+  "conexionSoloLectura": true,
+  "catalogoYFichasAmbosTemas": true,
+  "imagenesIdenticas": true,
+  "nota": "Comparación con inventario leído al iniciar esta revisión en laptop; no sustituye inventario privado de la PC anterior.",
+  "archivoSqliteIdentico": true,
+  "configuracionYCredencialesIdenticas": true
+}

@@ -15,7 +15,7 @@ async function muestra(elemento) {
 
 for (const tema of ['claro', 'oscuro']) test(`diez estados reales, contraste e idioma: ${tema}`, async ({ page }, info) => {
   await usarCatalogoVisual(); await page.setViewportSize({ width: 1672, height: 941 }); await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light', reducedMotion: 'reduce' });
-  const carpeta = 'specs/002-rediseno-visual/evidencia/capturas/estados'; await mkdir(carpeta, { recursive: true }); const resultados = [];
+  const carpeta = 'specs/003-whatsapp-carrusel/evidencia/capturas/estados'; await mkdir(carpeta, { recursive: true }); const resultados = [];
   async function registrar(estado, elemento) {
     await expect(elemento).toBeVisible(); await elemento.scrollIntoViewIfNeeded(); await page.evaluate(() => document.fonts.ready);
     const colores = await muestra(elemento); const ratio = contraste(colores.color, colores.fondo); expect(ratio).toBeGreaterThanOrEqual(colores.grande ? 3 : 4.5);
@@ -43,5 +43,5 @@ for (const tema of ['claro', 'oscuro']) test(`diez estados reales, contraste e i
   for (const boton of await page.getByRole('dialog').getByRole('button').all()) { const c = await muestra(boton); expect(contraste(c.color, c.fondo)).toBeGreaterThanOrEqual(4.5); }
   await page.getByRole('dialog').getByRole('button', { name: 'Cancelar' }).click(); await page.context().clearCookies(); await page.getByRole('button', { name: 'Guardar producto' }).click();
   await registrar('sesion-vencida', page.getByText('Tu sesión terminó. Inicia sesión para continuar'));
-  expect(resultados).toHaveLength(10); await writeFile(`specs/002-rediseno-visual/evidencia/estados-${tema}.json`, JSON.stringify(resultados, null, 2));
+  expect(resultados).toHaveLength(10); await writeFile(`specs/003-whatsapp-carrusel/evidencia/estados-${tema}.json`, JSON.stringify(resultados, null, 2));
 });

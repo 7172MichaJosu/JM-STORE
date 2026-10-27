@@ -1,4 +1,5 @@
 .rejilla-productos { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; align-items: start; }
+.enlace-ficha-imagen { display: block; min-width: 44px; min-height: 44px; align-self: center; border-radius: 16px; }
 .tarjeta-producto { min-width: 0; position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0,40fr) minmax(0,60fr); align-items: stretch; background: var(--superficie); border: 1px solid var(--borde-decorativo); border-radius: 20px; padding: 18px; box-shadow: var(--sombra); }
 .tarjeta-producto::before { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1; box-shadow: 0 8px 34px #0066FF10; }
 .tarjeta-producto { transition: border-color 200ms ease, box-shadow 200ms ease, background-color 180ms ease; }

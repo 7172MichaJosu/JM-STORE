@@ -1,0 +1,38 @@
+{
+  "fecha": "2026-10-27",
+  "plataforma": "Windows x64",
+  "node": "24.15.0",
+  "npm": "11.12.1",
+  "playwright": "1.64.1",
+  "nodeTest": {
+    "omitidas": 0,
+    "aprobadas": 41,
+    "fallidas": 0
+  },
+  "build": "aprobada",
+  "e2eRecuperada": {
+    "fallidas": 0,
+    "aprobadas": 164
+  },
+  "e2eFinal": {
+    "omitidas": 0,
+    "aprobadas": 171,
+    "fallidas": 0,
+    "porMotor": {
+      "chromium": 163,
+      "firefox": 4,
+      "webkit": 4
+    }
+  },
+  "regresionTexto200": {
+    "despues": "1/1 dirigida y suite completa aprobadas",
+    "antes": "1 fallo esperado al reproducir superposición"
+  },
+  "baselinesActualizadas": 0,
+  "tareasCompletadas": 33,
+  "tareasPendientes": [
+    "T032",
+    "T033",
+    "T034"
+  ]
+}

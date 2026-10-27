@@ -1,13 +1,15 @@
 import express from 'express';
 import { fileURLToPath } from 'node:url';
+import { readFileSync } from 'node:fs';
 import { ErrorAPI } from './errores.js';
 import { rutasCatalogo } from './routes/catalogo.js';
 import { crearAuth } from './auth.js';
 import { rutasSesion } from './routes/sesion.js';
 import { rutasProductos } from './routes/productos.js';
+import { rutasPaginasProducto } from './routes/paginas-producto.js';
 
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
-export function crearApp({ config, db, reloj, procesarImagen }) {
+export function crearApp({ config, db, reloj, procesarImagen, leerIndiceHtml = () => readFileSync(dist + '/index.html', 'utf8') }) {
   const app = express();
   const auth = crearAuth(config, { reloj });
   app.disable('x-powered-by');
@@ -30,9 +32,10 @@ export function crearApp({ config, db, reloj, procesarImagen }) {
   app.use('/api', rutasProductos({ db, auth, procesarImagen }));
   app.use('/api', (req, res) => res.status(404).json({ codigo: 'NO_ENCONTRADO', mensaje: 'La página solicitada no está disponible' }));
   app.use('/assets', express.static(dist + '/assets', { immutable: true, maxAge: '1y', dotfiles: 'deny' }));
+  app.use(rutasPaginasProducto({ config, db, leerIndiceHtml }));
   app.get(['/', '/encargado', '/encargado/ingresar'], (req, res) => {
     res.set('Cache-Control', 'no-store');
-    res.sendFile(dist + '/index.html');
+    res.type('html').send(leerIndiceHtml());
   });
   app.use((req, res) => res.status(404).json({ codigo: 'NO_ENCONTRADO', mensaje: 'La página solicitada no está disponible' }));
   app.use((error, req, res, next) => {

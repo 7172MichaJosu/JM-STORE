@@ -1,7 +1,7 @@
 import Icono from './Icono.jsx';
-import ImagenProducto from './ImagenProducto.jsx';
+import CarruselProductos from './CarruselProductos.jsx';
 
-export default function PortadaCatalogo({ producto }) {
+export default function PortadaCatalogo({ productos }) {
   return <>
     <section className="hero" aria-labelledby="titulo-catalogo">
       <div className="contenedor hero-interior">
@@ -15,8 +15,8 @@ export default function PortadaCatalogo({ producto }) {
         <div className="hero-arte" data-aparicion-id="portada-escena">
           <div className="escena-orbita escena-orbita-uno" aria-hidden="true" /><div className="escena-orbita escena-orbita-dos" aria-hidden="true" />
           <div className="escena-base" aria-hidden="true" />
-          <div className="hero-producto">{producto ? <ImagenProducto variante="portada" src={producto.imagenUrl} alt={producto.nombre} fetchPriority="high" />
-            : <div className="escena-identidad" aria-hidden="true"><span>JM</span><small>ELIGE A TU RITMO</small></div>}</div>
+          {productos.length ? <CarruselProductos productos={productos} />
+            : <div className="hero-producto"><div className="escena-identidad" aria-hidden="true"><span>JM</span><small>ELIGE A TU RITMO</small></div></div>}
           <div className="escena-distintivo escena-distintivo-uno" aria-hidden="true"><Icono nombre="brillo" size={25} /><span>Tu próximo<br /><strong>favorito</strong></span></div>
           <div className="escena-distintivo escena-distintivo-dos" aria-hidden="true"><Icono nombre="bolsa" size={25} /><span>Elige<br /><strong>a tu ritmo</strong></span></div>
         </div>

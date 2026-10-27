@@ -17,6 +17,7 @@ export function abrirDB(ruta) {
     imagen_mime TEXT NOT NULL CHECK(imagen_mime = 'image/webp')
   ) STRICT`);
   const listado = raw.prepare('SELECT id, nombre, descripcion, precio_centimos FROM productos ORDER BY id');
+  const detalle = raw.prepare('SELECT id, nombre, descripcion, precio_centimos FROM productos WHERE id = ?');
   const copia = raw.prepare('SELECT imagen, imagen_mime FROM productos WHERE id = ?');
   const alta = raw.prepare('INSERT INTO productos VALUES (@id, @nombre, @descripcion, @precioCentimos, @imagen, @mime)');
   const insertar = raw.transaction(p => {
@@ -29,6 +30,7 @@ export function abrirDB(ruta) {
   return {
     raw,
     listar() { return listado.all().map(productoPublico); },
+    obtener(id) { const fila = detalle.get(id); return fila ? productoPublico(fila) : null; },
     imagen(id) { return copia.get(id); },
     insertar(p) { return insertar(p); },
     eliminar(id) { return eliminar(id); },

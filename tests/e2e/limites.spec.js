@@ -93,5 +93,5 @@ for (const tema of ['claro', 'oscuro']) test(`cinco aperturas frías con veinte 
   }
   expect(mediciones.filter(m => m.usableMs <= 3000).length).toBeGreaterThanOrEqual(4);
   const resultado = { tema, navegador: browser.version(), plataforma: process.platform, viewport: '1672x941', productos: 20, cache: 'contextos nuevos; localhost sin throttling; fuente incluida', mediciones };
-  console.log('SC-007', JSON.stringify(resultado)); await writeFile(`specs/002-rediseno-visual/evidencia/rendimiento-${tema}.json`, JSON.stringify(resultado, null, 2));
+  console.log('SC-007', JSON.stringify(resultado)); await writeFile(`specs/003-whatsapp-carrusel/evidencia/rendimiento-${tema}.json`, JSON.stringify(resultado, null, 2));
 });

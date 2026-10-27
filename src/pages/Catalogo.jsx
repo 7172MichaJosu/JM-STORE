@@ -20,7 +20,7 @@ export default function Catalogo() {
     return () => controlador.abort();
   }, [intento]);
   return <Marco><main ref={pagina} id="contenido" tabIndex={-1} className="tienda-pagina">
-    <PortadaCatalogo producto={estado === 'listo' ? datos.productos[0] : null} />
+    <PortadaCatalogo productos={estado === 'listo' ? datos.productos : []} />
     <section id="catalogo" className="catalogo contenedor" aria-labelledby="titulo-productos">
       <div className="titulo-seccion" data-aparicion-id="titulo-productos"><div><span className="etiqueta">NUESTRO CATÁLOGO</span><h2 id="titulo-productos">Productos <span>destacados</span></h2><p>Explora los productos y pide tu favorito fácilmente por WhatsApp.</p></div>
         {datos && estado === 'listo' && <span className="contador">{datos.productos.length} {datos.productos.length === 1 ? 'producto' : 'productos'}</span>}

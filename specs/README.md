@@ -2,7 +2,7 @@
 
 **Actualizado**: 2026-10-27
 
-La aplicación conserva la [base funcional 001](001-catalogo-pedidos-whatsapp/spec.md) y aplica el [rediseño visual 002](002-rediseno-visual/spec.md), conforme a [Constitution 1.0.0](../.specify/memory/constitution.md) y [AGENTS.md](../AGENTS.md). El usuario autorizó el cierre Git de 002; su aceptación total sigue abierta y no está aprobada.
+La aplicación conserva la [base funcional 001](001-catalogo-pedidos-whatsapp/spec.md), aplica el [rediseño visual 002](002-rediseno-visual/spec.md) e incorpora [WhatsApp y carrusel 003](003-whatsapp-carrusel/spec.md), conforme a [Constitution 1.0.0](../.specify/memory/constitution.md) y [AGENTS.md](../AGENTS.md). Los cierres Git autorizados no aprueban las validaciones externas pendientes ni constituyen aceptación total.
 
 | Funcionalidad | Estado efectivo |
 | --- | --- |
@@ -28,3 +28,15 @@ Specify, Clarify, [Plan](002-rediseno-visual/plan.md) y [Tasks](002-rediseno-vis
 Solicitud posterior a Implement: el usuario autorizó commit y push de todos los cambios pendientes a `002-rediseno-visual`. La rama conserva el estado de aceptación descrito; en aquella solicitud no se pidió su cierre ni fusión con `main`.
 
 Solicitud del 2026-10-27: cierre Git de `002-rediseno-visual`, con fusión `--no-ff` en `main`, eliminación de ambas ramas de la feature y subida de `main`, condicionado a pruebas correctas. La aceptación funcional continúa pendiente: T024, T046, T059, T065 y T067 permanecen sin marcar. Consultar [registro de revisión y pruebas de cierre](002-rediseno-visual/evidencia/cierre-git.md).
+
+## Feature 003 — WhatsApp y carrusel
+
+La rama `003-whatsapp-carrusel` recupera el avance `eae656f`: mensaje individual con emojis, descripción íntegra, precio y enlace; ficha por UUID con HTML Open Graph e imagen social JPEG; carrusel de productos existentes con avance cada cinco segundos, controles manuales, pausas y movimiento reducido. No cambia el esquema SQLite ni añade dependencias.
+
+La continuación en laptop del 2026-10-27 revisa el código y los documentos SDD, repite las pruebas y completa las verificaciones locales pendientes. El [registro de aceptación](003-whatsapp-carrusel/evidencia/aceptacion.md) y [tasks.md](003-whatsapp-carrusel/tasks.md) son la referencia del resultado. T032, T033 y T034 requieren todavía HTTPS público, WhatsApp real y validación presencial con celular/lectura asistida; los ensayos técnicos no los aprueban. Se mantienen también las aceptaciones pendientes de 001/002.
+
+Resultado local: 33/36 tareas completas; T029, T030, T031, T035 y T036 completadas en esta revisión. Se corrigió una superposición a texto 200 % y se añadieron siete pruebas: Node 41/41, compilación aprobada y regresión E2E final 171/171 (163 Chromium, 4 Firefox, 4 WebKit), manteniendo las baselines existentes.
+
+Por instrucción expresa, esta continuación conserva productos, fotografías, `.env`, credenciales y SQLite, y no realiza commit, push, merge ni cierre de la feature.
+
+Solicitudes posteriores del 2026-10-27: primero se autorizaron commit y push del avance a `003-whatsapp-carrusel`, registrados en `8467b06`. Después se solicitó el cierre Git conforme a AGENTS.md: pruebas correctas, fusión `--no-ff` con `Merge feature 003: whatsapp-carrusel`, eliminación de las ramas de la feature y subida de `main`. La aceptación funcional continúa pendiente: T032, T033 y T034 permanecen sin marcar. Consultar el [registro de revisión y pruebas de cierre](003-whatsapp-carrusel/evidencia/cierre-git.md); el historial Git refleja el resultado de la integración.

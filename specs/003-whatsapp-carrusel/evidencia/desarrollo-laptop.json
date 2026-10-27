@@ -1,0 +1,9 @@
+{
+  "fecha": "2026-10-27",
+  "vite": true,
+  "apiTemporal": true,
+  "productos": 3,
+  "fichaDirectaYRecarga": true,
+  "imagen": true,
+  "enlaceConOrigenVite": true
+}

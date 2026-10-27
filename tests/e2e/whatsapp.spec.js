@@ -12,7 +12,7 @@ for (const colorScheme of ['light', 'dark']) test(`tres enlaces, una activación
     const tarjeta = page.getByRole('article').filter({ has: page.locator(`[id="producto-${p.id}"]`) });
     const enlace = tarjeta.getByRole('link', { name: 'Pedir por WhatsApp' });
     const href = await enlace.getAttribute('href'); const url = new URL(href);
-    expect(url.searchParams.get('text')).toBe(mensajeWhatsApp(p));
+    expect(url.searchParams.get('text')).toBe(mensajeWhatsApp(p, 'http://localhost:4175'));
     expect(url.pathname).toBe('/12025550123');
     await enlace.click(); await expect(page).toHaveURL(href); await page.goBack();
     await expect(page.getByRole('article')).toHaveCount(20);
