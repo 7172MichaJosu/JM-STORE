@@ -1,0 +1,20 @@
+[
+  {
+    "archivo": "tema-inicial-v1.js",
+    "bytes": 651,
+    "sha256": "098125de973bb4e1c3ac23cad6e00dc6133e3d28c44cd6a8953f581c36e7dd64",
+    "copiaDistIdentica": true
+  },
+  {
+    "archivo": "manrope-variable-v1.ttf",
+    "bytes": 164700,
+    "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+    "copiaDistIdentica": true
+  },
+  {
+    "archivo": "manrope-OFL-v1.txt",
+    "bytes": 4387,
+    "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+    "copiaDistIdentica": true
+  }
+]

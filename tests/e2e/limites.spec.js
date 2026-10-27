@@ -1,4 +1,8 @@
-import { test, expect, ingresar, llenarProducto, habilitarDestino } from '../fixtures/navegador.mjs';
+import { test, expect, ingresar, llenarProducto, habilitarDestino, usarCatalogoVisual } from '../fixtures/navegador.mjs';
+import { writeFile } from 'node:fs/promises';
+
+for (const tema of ['claro', 'oscuro']) test.describe(`presentación ${tema}`, () => {
+  test.beforeEach(async ({ page }) => { await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light' }); });
 
 test('V-08.1 vacío sin productos ficticios', async ({ page }) => {
   await page.route('**/api/catalogo', route => route.fulfill({ json: { productos: [], whatsapp: { disponible: false, destino: null } } }));
@@ -50,5 +54,44 @@ test('V-08.7 destino no disponible y revisión de español/soles/sin pagos', asy
   for (const precio of await page.locator('.producto-precio').allTextContents()) expect(precio).toMatch(/^S\/ [0-9]+\.[0-9]{2}$/);
   await expect(page.getByRole('textbox')).toHaveCount(0);
   expect(await page.locator('body').innerText()).not.toMatch(/scrypt\$|SELECT |SQLITE_PATH|ADMIN_PASSWORD|pedido enviado|carrito|pasarela/i);
-  await ingresar(page); const etiquetas = await page.locator('form label').allTextContents(); expect(etiquetas).toEqual(['Nombre', 'Descripción', 'Imagen', 'Precio (S/)']);
+  await ingresar(page); const etiquetas = await page.locator('form label').allTextContents(); expect(etiquetas).toEqual(['Nombre', 'Descripción', 'Precio (S/)', 'Imagen']);
+});
+
+});
+
+for (const tema of ['claro', 'oscuro']) for (const ancho of [639, 640, 1199, 1200]) test(`límite responsive ${ancho} en ${tema}`, async ({ page }) => {
+  await usarCatalogoVisual(); await page.setViewportSize({ width: ancho, height: 900 }); await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light' });
+  await page.goto('/'); await expect(page.getByRole('article')).toHaveCount(3);
+  const datos = await page.getByRole('article').first().evaluate(e => {
+    const foto = e.querySelector('.imagen-producto').getBoundingClientRect(), contenido = e.querySelector('.producto-contenido').getBoundingClientRect();
+    return { columnas: getComputedStyle(e.parentElement).gridTemplateColumns.split(' ').length, vertical: foto.bottom <= contenido.top + 2, desborde: document.documentElement.scrollWidth > innerWidth };
+  });
+  expect(datos.columnas).toBe(ancho < 640 ? 1 : ancho < 1200 ? 2 : 3); expect(datos.vertical).toBe(ancho < 1200); expect(datos.desborde).toBeFalsy();
+  await ingresar(page);
+  expect(await page.locator('.navegacion-encargado').evaluate(e => getComputedStyle(e).position === 'fixed')).toBe(ancho >= 1200);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
+});
+
+for (const tema of ['claro', 'oscuro']) test(`cinco aperturas frías con veinte fotografías: ${tema}`, async ({ browser }) => {
+  await usarCatalogoVisual(20); const mediciones = [];
+  for (let apertura = 1; apertura <= 5; apertura++) {
+    const contexto = await browser.newContext({ baseURL: 'http://localhost:4175', viewport: { width: 1672, height: 941 }, colorScheme: tema === 'oscuro' ? 'dark' : 'light', reducedMotion: 'no-preference', locale: 'es-PE' });
+    try {
+      const pagina = await contexto.newPage(); await habilitarDestino(pagina); const inicio = performance.now(); await pagina.goto('/');
+      await expect(pagina.getByRole('article')).toHaveCount(20); await pagina.evaluate(() => document.fonts.ready);
+      for (let i = 0; i < 3; i++) {
+        const tarjeta = pagina.getByRole('article').nth(i);
+        await expect(tarjeta.getByRole('heading')).toBeVisible(); await expect(tarjeta.locator('.producto-precio')).toBeVisible(); await expect(tarjeta.getByRole('link', { name: 'Pedir por WhatsApp' })).toBeEnabled();
+        await expect.poll(() => tarjeta.locator('img').evaluate(e => e.complete && e.naturalWidth > 0)).toBeTruthy();
+      }
+      const usableMs = Math.round(performance.now() - inicio); const inicioTema = performance.now(); await pagina.getByRole('switch').click();
+      await expect(pagina.getByRole('switch')).toHaveAttribute('aria-checked', String(tema !== 'oscuro')); const temaMs = Math.round(performance.now() - inicioTema); expect(temaMs).toBeLessThanOrEqual(500);
+      for (const tarjeta of await pagina.getByRole('article').all()) { await tarjeta.scrollIntoViewIfNeeded(); await expect(tarjeta.getByRole('heading')).toBeVisible(); }
+      expect(new Set(await pagina.getByRole('article').evaluateAll(es => es.map(e => e.dataset.aparicionId))).size).toBe(20);
+      mediciones.push({ apertura, usableMs, temaMs });
+    } finally { await contexto.close(); }
+  }
+  expect(mediciones.filter(m => m.usableMs <= 3000).length).toBeGreaterThanOrEqual(4);
+  const resultado = { tema, navegador: browser.version(), plataforma: process.platform, viewport: '1672x941', productos: 20, cache: 'contextos nuevos; localhost sin throttling; fuente incluida', mediciones };
+  console.log('SC-007', JSON.stringify(resultado)); await writeFile(`specs/002-rediseno-visual/evidencia/rendimiento-${tema}.json`, JSON.stringify(resultado, null, 2));
 });

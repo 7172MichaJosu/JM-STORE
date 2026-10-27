@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { api } from '../lib/api.js';
 import Icono from './Icono.jsx';
+import ImagenProducto from './ImagenProducto.jsx';
 import '../styles/formulario.css';
 
 export default function FormularioProducto({ onGuardado, onSesionTerminada, onIniciar }) {
@@ -27,7 +28,7 @@ export default function FormularioProducto({ onGuardado, onSesionTerminada, onIn
   }
   function enfocarErrores(errores) {
     requestAnimationFrame(() => {
-      const campo = ['nombre', 'descripcion', 'imagen', 'precio'].find(k => errores[k]);
+      const campo = ['nombre', 'descripcion', 'precio', 'imagen'].find(k => errores[k]);
       if (campo) formulario.current?.elements[campo]?.focus(); else mensaje.current?.focus();
     });
   }
@@ -48,14 +49,16 @@ export default function FormularioProducto({ onGuardado, onSesionTerminada, onIn
     } finally { bloqueo.current = false; setOcupado(false); }
   }
   const ayuda = (campo, id) => `${id}${campos[campo] ? ` error-${campo}` : ''}`;
-  return <section className="formulario-panel" aria-labelledby="titulo-agregar"><div className="titulo-panel"><span className="panel-icono"><Icono nombre="mas" /></span><div><h2 id="titulo-agregar">Agregar producto</h2><p>Un nuevo favorito para tu catálogo.</p></div></div>
+  return <section className="formulario-panel" aria-labelledby="titulo-agregar"><div className="titulo-panel"><span className="panel-icono"><Icono nombre="mas" /></span><div><h2 id="titulo-agregar">Agregar producto</h2><p>Completa la información del nuevo producto.</p></div></div>
     {error && <p className="aviso error" role="alert" tabIndex={-1} ref={mensaje}>{error}</p>}
     <form onSubmit={enviar} ref={formulario} noValidate aria-busy={ocupado}>
-      <div className="campo"><label htmlFor="nombre">Nombre</label><input id="nombre" name="nombre" value={datos.nombre} onChange={cambiar} aria-describedby={ayuda('nombre', 'ayuda-nombre')} aria-invalid={!!campos.nombre} /><span id="ayuda-nombre" className="ayuda">Máximo 4 KiB de texto.</span>{campos.nombre && <span className="error-campo" id="error-nombre">{campos.nombre}</span>}</div>
-      <div className="campo"><label htmlFor="descripcion">Descripción</label><textarea id="descripcion" name="descripcion" rows={4} value={datos.descripcion} onChange={cambiar} aria-describedby={ayuda('descripcion', 'ayuda-descripcion')} aria-invalid={!!campos.descripcion} /><span id="ayuda-descripcion" className="ayuda">Describe el producto. Máximo 32 KiB de texto.</span>{campos.descripcion && <span className="error-campo" id="error-descripcion">{campos.descripcion}</span>}</div>
-      <div className="campo"><label htmlFor="imagen" id="etiqueta-imagen">Imagen</label><div className="archivo-control"><Icono nombre="imagen" size={28} /><span><strong>{archivo ? 'Cambiar imagen' : 'Elegir imagen del dispositivo'}</strong><small>{archivo ? 'Imagen seleccionada' : 'Tu producto, en una imagen'}</small></span><input id="imagen" name="imagen" type="file" accept="image/jpeg,image/png,image/webp" ref={entradaArchivo} aria-labelledby="etiqueta-imagen" aria-describedby={ayuda('imagen', 'ayuda-imagen')} aria-invalid={!!campos.imagen} onChange={e => { setArchivo(e.target.files?.[0] || null); setCampos(c => ({ ...c, imagen: undefined })); }} /></div><span id="ayuda-imagen" className="ayuda">JPEG, PNG o WebP estático; máximo 10 MiB y 25 millones de píxeles. Conservaremos una copia.</span>{preview && <img className="vista-previa" src={preview} alt="Vista previa de la imagen seleccionada" onLoad={e => setUtilizable(e.target.naturalWidth * e.target.naturalHeight <= 25000000)} onError={() => { setUtilizable(false); setCampos(c => ({ ...c, imagen: 'Selecciona una imagen válida' })); }} />}{campos.imagen && <span className="error-campo" id="error-imagen">{campos.imagen}</span>}</div>
+      <div className="campo"><label htmlFor="nombre">Nombre</label><input id="nombre" name="nombre" value={datos.nombre} onChange={cambiar} placeholder="Ej. Audífonos Bluetooth" aria-describedby={ayuda('nombre', 'ayuda-nombre')} aria-invalid={!!campos.nombre} /><span id="ayuda-nombre" className="ayuda">Máximo 4 KiB de texto.</span>{campos.nombre && <span className="error-campo" id="error-nombre">{campos.nombre}</span>}</div>
+      <div className="campo"><label htmlFor="descripcion">Descripción</label><textarea id="descripcion" name="descripcion" rows={4} value={datos.descripcion} onChange={cambiar} placeholder="Describe las características del producto…" aria-describedby={ayuda('descripcion', 'ayuda-descripcion')} aria-invalid={!!campos.descripcion} /><span id="ayuda-descripcion" className="ayuda">Describe el producto. Máximo 32 KiB de texto.</span>{campos.descripcion && <span className="error-campo" id="error-descripcion">{campos.descripcion}</span>}</div>
       <div className="campo"><label htmlFor="precio">Precio (S/)</label><input id="precio" name="precio" inputMode="decimal" value={datos.precio} onChange={cambiar} placeholder="49.90" aria-describedby={ayuda('precio', 'ayuda-precio')} aria-invalid={!!campos.precio} /><span id="ayuda-precio" className="ayuda">Usa hasta dos decimales, sin separadores de miles.</span>{campos.precio && <span className="error-campo" id="error-precio">{campos.precio}</span>}</div>
-      <button className="guardar-producto" disabled={ocupado}><Icono nombre="mas" size={18} />{ocupado ? 'Guardando…' : 'Guardar producto'}</button>
+      <div className="campo"><label htmlFor="imagen" id="etiqueta-imagen">Imagen</label><div className="selector-imagen"><div className="archivo-control"><Icono nombre="imagen" size={30} /><span><strong>{archivo ? 'Cambiar imagen' : 'Elegir imagen del dispositivo'}</strong><small>{archivo ? 'Imagen seleccionada' : 'JPEG, PNG o WebP'}</small></span><input id="imagen" name="imagen" type="file" accept="image/jpeg,image/png,image/webp" ref={entradaArchivo} aria-labelledby="etiqueta-imagen" aria-describedby={ayuda('imagen', 'ayuda-imagen')} aria-invalid={!!campos.imagen} onChange={e => { setArchivo(e.target.files?.[0] || null); setCampos(c => ({ ...c, imagen: undefined })); }} /></div>
+        <div className="preview-campo"><span>Vista previa</span>{preview ? <ImagenProducto variante="preview" className="vista-previa" src={preview} alt="Vista previa de la imagen seleccionada" onLoad={e => setUtilizable(e.target.naturalWidth * e.target.naturalHeight <= 25000000)} onError={() => { setUtilizable(false); setCampos(c => ({ ...c, imagen: 'Selecciona una imagen válida' })); }} /> : <div className="preview-vacia"><Icono nombre="imagen" size={30} /><span>Tu fotografía aparecerá aquí</span></div>}</div></div>
+        <span id="ayuda-imagen" className="ayuda">JPEG, PNG o WebP estático; máximo 10 MiB y 25 millones de píxeles. Conservaremos una copia.</span>{campos.imagen && <span className="error-campo" id="error-imagen">{campos.imagen}</span>}</div>
+      <button className="guardar-producto" disabled={ocupado}><Icono nombre="mas" size={18} />{ocupado ? 'Guardando…' : 'Guardar producto'}<Icono nombre="flecha" size={18} /></button>
     </form>
   </section>;
 }

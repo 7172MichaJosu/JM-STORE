@@ -1,0 +1,52 @@
+[
+  {
+    "estado": "carga",
+    "texto": "Cargando productos…",
+    "contraste": 16.59
+  },
+  {
+    "estado": "vacio",
+    "texto": "Por el momento no hay productos disponibles",
+    "contraste": 16.59
+  },
+  {
+    "estado": "consulta-fallida",
+    "texto": "No pudimos cargar los productos",
+    "contraste": 16.59
+  },
+  {
+    "estado": "imagen-fallida",
+    "texto": "Imagen no disponible",
+    "contraste": 8.87
+  },
+  {
+    "estado": "destino-ausente",
+    "texto": "Pedir por WhatsApp",
+    "contraste": 8.04
+  },
+  {
+    "estado": "acceso-incorrecto",
+    "texto": "No pudimos iniciar sesión. Revisa tus datos e inténtalo de nuevo",
+    "contraste": 9.16
+  },
+  {
+    "estado": "alta-invalida",
+    "texto": "Ingresa un nombre",
+    "contraste": 10.4
+  },
+  {
+    "estado": "guardado-fallido",
+    "texto": "No pudimos guardar el producto. Inténtalo de nuevo",
+    "contraste": 9.16
+  },
+  {
+    "estado": "eliminacion-fallida",
+    "texto": "No pudimos eliminar el producto. Inténtalo de nuevo",
+    "contraste": 8.93
+  },
+  {
+    "estado": "sesion-vencida",
+    "texto": "Tu sesión terminó. Inicia sesión para continuar",
+    "contraste": 9.91
+  }
+]

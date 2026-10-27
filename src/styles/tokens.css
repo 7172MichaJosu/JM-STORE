@@ -1,15 +1,37 @@
+@font-face { font-family: Manrope; src: url('/assets/manrope-variable-v1.ttf') format('truetype'); font-style: normal; font-weight: 200 800; font-display: swap; }
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #203b33;
-  background: #f7f6f1;
-  font-synthesis: none;
-  --verde: #173f35;
-  --verde-hover: #245b49;
-  --tinta: #203b33;
-  --suave: #58665f;
-  --marfil: #f7f6f1;
-  --borde: #d7ded5;
-  --acento: #97502d;
-  --rojo: #a52c36;
-  --radio: 22px;
+  font-family: Manrope, system-ui, -apple-system, "Segoe UI", sans-serif; color-scheme: light;
+  --fondo: #F4F7FF; --superficie: #FFFFFF; --superficie-elevada: #F4F7FF;
+  --texto: #071126; --texto-secundario: #475569; --texto-atenuado: #5F6F86;
+  --borde-decorativo: #D8E2F3; --borde-control: #7B8CA5; --foco: #0057D9;
+  --azul: #0066FF; --violeta: #7C3AED; --cian: #00D4FF;
+  --error-texto: #B42318; --error-fondo: #FFF1F0;
+  --exito-texto: #14654A; --exito-fondo: #E9FAF3;
+  --deshabilitado-texto: #475569; --deshabilitado-fondo: #E6ECF5;
+  --sombra: 0 12px 38px #193E7510; --halo: 0 8px 28px #0066FF18;
+  --degradado: linear-gradient(110deg, #0066FF, #7C3AED);
+  --acento-titulo: linear-gradient(105deg, #005BD8, #6D28D9);
+  color: var(--texto); background: var(--fondo); font-synthesis: none;
+}
+:root[data-tema="oscuro"] {
+  color-scheme: dark;
+  --fondo: #050B1B; --superficie: #0D1830; --superficie-elevada: #142442;
+  --texto: #F5F8FF; --texto-secundario: #B7C5DF; --texto-atenuado: #A6B6D0;
+  --borde-decorativo: #243B61; --borde-control: #5F789F; --foco: #00D4FF;
+  --error-texto: #FFB4AD; --error-fondo: #381B25; --exito-texto: #9BF0CF; --exito-fondo: #10362F;
+  --deshabilitado-texto: #B7C5DF; --deshabilitado-fondo: #1C2C47;
+  --sombra: 0 12px 38px #00000030; --halo: 0 0 30px #00D4FF18;
+  --acento-titulo: linear-gradient(105deg, #00D4FF, #B383FF);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema]) {
+    color-scheme: dark;
+    --fondo: #050B1B; --superficie: #0D1830; --superficie-elevada: #142442;
+    --texto: #F5F8FF; --texto-secundario: #B7C5DF; --texto-atenuado: #A6B6D0;
+    --borde-decorativo: #243B61; --borde-control: #5F789F; --foco: #00D4FF;
+    --error-texto: #FFB4AD; --error-fondo: #381B25; --exito-texto: #9BF0CF; --exito-fondo: #10362F;
+    --deshabilitado-texto: #B7C5DF; --deshabilitado-fondo: #1C2C47;
+    --sombra: 0 12px 38px #00000030; --halo: 0 0 30px #00D4FF18;
+    --acento-titulo: linear-gradient(105deg, #00D4FF, #B383FF);
+  }
 }

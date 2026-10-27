@@ -1,5 +1,8 @@
 import { test, expect } from '../fixtures/navegador.mjs';
 
+for (const tema of ['claro', 'oscuro']) test.describe(`presentación ${tema}`, () => {
+  test.beforeEach(async ({ page }) => { await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light' }); });
+
 test('20 productos, texto completo y seguro, imágenes y teclado', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('article')).toHaveCount(20);
@@ -36,3 +39,5 @@ for (const ancho of [360, 768, 1366]) {
     expect(await tarjeta.evaluate(e => getComputedStyle(e).animationName)).toBe('none');
   });
 }
+
+});

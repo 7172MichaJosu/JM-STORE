@@ -1,7 +1,8 @@
 import { test, expect, habilitarDestino, ingresar } from '../fixtures/navegador.mjs';
 import { mensajeWhatsApp } from '../../src/lib/whatsapp.js';
 
-test('tres enlaces, una activación y regreso sin declarar envío', async ({ page }) => {
+for (const colorScheme of ['light', 'dark']) test(`tres enlaces, una activación y regreso sin declarar envío (${colorScheme})`, async ({ page }) => {
+  await page.emulateMedia({ colorScheme });
   await habilitarDestino(page);
   let aperturas = 0;
   await page.route('https://wa.me/**', async route => { aperturas++; await route.fulfill({ contentType: 'text/html', body: '<p>Destino externo simulado; no se envió ningún mensaje</p>' }); });

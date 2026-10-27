@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { api } from '../lib/api.js';
 import Marco from '../components/Marco.jsx';
 import Icono from '../components/Icono.jsx';
+import useAparicion from '../hooks/useAparicion.js';
 import '../styles/acceso.css';
 import '../styles/formulario.css';
 
@@ -39,6 +40,7 @@ export function AccesoEncargado({ onIngresar, aviso }) {
   </section>;
 }
 export default function IniciarSesion() {
+  const pagina = useRef(null); useAparicion(pagina, null, true, 'acceso');
   useEffect(() => { const c = new AbortController(); api('/api/sesion', { signal: c.signal }).then(d => { if (d.autenticado) location.replace('/encargado'); }).catch(() => {}); return () => c.abort(); }, []);
-  return <Marco gestion><main id="contenido" tabIndex={-1} className="contenedor acceso-pagina"><AccesoEncargado onIngresar={() => location.assign('/encargado')} /></main></Marco>;
+  return <Marco gestion><main ref={pagina} id="contenido" tabIndex={-1} className="contenedor acceso-pagina"><AccesoEncargado onIngresar={() => location.assign('/encargado')} /></main></Marco>;
 }

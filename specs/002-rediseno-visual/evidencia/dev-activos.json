@@ -1,0 +1,22 @@
+{
+  "origen": "http://127.0.0.1:5176",
+  "modo": "Vite development / React StrictMode",
+  "activos": [
+    {
+      "recurso": "/assets/tema-inicial-v1.js",
+      "estado": 200,
+      "bytes": 651
+    },
+    {
+      "recurso": "/assets/manrope-variable-v1.ttf",
+      "estado": 200,
+      "bytes": 164700
+    },
+    {
+      "recurso": "/assets/manrope-OFL-v1.txt",
+      "estado": 200,
+      "bytes": 4387
+    }
+  ],
+  "entradas": 1
+}
