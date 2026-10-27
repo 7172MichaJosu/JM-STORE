@@ -1,5 +1,8 @@
 import { test, expect, ingresar } from '../fixtures/navegador.mjs';
 
+for (const tema of ['claro', 'oscuro']) test.describe(`administración ${tema}`, () => {
+  test.beforeEach(async ({ page }) => { await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light' }); });
+
 test('gestión directa cerrada, acceso incorrecto, correcto y cierre con historial', async ({ page }) => {
   await page.goto('/encargado');
   await expect(page.getByRole('button', { name: 'Iniciar sesión', exact: true })).toBeVisible();
@@ -33,4 +36,6 @@ test('límite temporal 429 bloquea y permite reintentar después del plazo', asy
   await expect(page.getByText('Espera unos minutos antes de volver a intentarlo', { exact: false })).toBeVisible(); await expect(enviar).toBeDisabled();
   await expect(enviar).toBeEnabled({ timeout: 4000 }); await page.unroute('**/api/sesion'); await enviar.click();
   await expect(page.getByRole('heading', { name: 'Gestión del catálogo' })).toBeVisible();
+});
+
 });

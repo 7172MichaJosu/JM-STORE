@@ -4,6 +4,9 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { imagenValida } from '../fixtures/imagenes.mjs';
 
+for (const tema of ['claro', 'oscuro']) test.describe(`administración ${tema}`, () => {
+  test.beforeEach(async ({ page }) => { await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light' }); });
+
 test('validación, previsualización, alta una vez y copia en sesión pública sin original', async ({ page, browser }) => {
   await ingresar(page); await page.getByRole('button', { name: 'Guardar producto' }).click();
   await expect(page.getByText('Ingresa un nombre', { exact: true })).toBeVisible(); await expect(page.getByLabel('Nombre', { exact: true })).toBeFocused();
@@ -55,4 +58,17 @@ test('una nueva operación fallida no conserva el mensaje de éxito anterior', a
   await llenarProducto(page, 'Segunda alta fallida'); await page.route('**/api/productos', route => route.fulfill({ status: 503, json: { mensaje: 'No disponible' } }));
   await page.getByRole('button', { name: 'Guardar producto' }).click(); await expect(page.getByText('No pudimos guardar el producto. Inténtalo de nuevo')).toBeVisible();
   await expect(page.getByText('Producto agregado correctamente', { exact: true })).toHaveCount(0); await expect(page.getByLabel('Nombre', { exact: true })).toHaveValue('Segunda alta fallida');
+});
+
+test('cuatro campos y vista previa completa conservados al cambiar tema y revalidar sesión', async ({ page }) => {
+  await ingresar(page); await llenarProducto(page, 'Vista conservada');
+  await expect(page.locator('.formulario-panel .campo')).toHaveCount(4);
+  const foto = page.getByRole('img', { name: 'Vista previa de la imagen seleccionada' });
+  expect(await foto.evaluate(e => getComputedStyle(e).objectFit)).toBe('contain');
+  const src = await foto.getAttribute('src'); await page.getByRole('switch').click();
+  await page.evaluate(() => window.dispatchEvent(new Event('focus')));
+  await expect(page.getByLabel('Nombre', { exact: true })).toBeVisible(); await expect(page.getByLabel('Nombre', { exact: true })).toHaveValue('Vista conservada');
+  expect(await foto.getAttribute('src')).toBe(src); expect(await page.getByLabel('Imagen', { exact: true }).evaluate(e => e.files.length)).toBe(1);
+});
+
 });

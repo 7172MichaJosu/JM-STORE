@@ -1,6 +1,8 @@
 # JM-STORE
 
-Catálogo público con solicitudes individuales por WhatsApp. El encargado inicia sesión para agregar productos con una imagen de su dispositivo y eliminarlos con confirmación. React, Vite, Express y SQLite; sin pagos en línea.
+Catálogo público con pedidos individuales por WhatsApp. El encargado inicia sesión para agregar productos con una fotografía y eliminarlos con confirmación. React, Vite, Express y SQLite, con CSS propio.
+
+La feature 002 incorpora portada, tarjetas y panel modernos, Manrope local, modo claro/oscuro, preferencia del dispositivo hasta elegir manualmente y movimiento reducido. Se conserva la base funcional 001 y el catálogo existente. El [registro de implementación](specs/002-rediseno-visual/evidencia/aceptacion.md) distingue lo verificado técnicamente de las aceptaciones externas pendientes.
 
 ## Ejecutar en Windows
 
@@ -8,29 +10,30 @@ Requiere Node.js **24 LTS** y npm. Desde `C:\JM-STORE`:
 
 ```powershell
 npm ci
+```
+
+Para una tienda ya configurada, conserva **.env, la ruta SQLite y las credenciales actuales**; el rediseño no necesita ejecutar configurar-acceso ni recrear datos. La instalación usa dependencias fijadas y evita scripts de instalación implícitos.
+
+Solo para una instalación nueva sin configuración:
+
+```powershell
 if (!(Test-Path -LiteralPath .env)) { Copy-Item -LiteralPath .env.example -Destination .env }
 npm run configurar-acceso
 ```
 
-La configuración del proyecto evita scripts de instalación implícitos y utiliza los binarios incluidos en las dependencias fijadas. La instalación limpia y los comandos explícitos se verificaron en Windows con Node 24.
+El configurador pide usuario/contraseña con entrada oculta y guarda usuario/hash en .env, ignorado por Git. No hay credenciales predeterminadas. SQLITE_PATH debe apuntar a la base persistente absoluta fuera del repositorio; para una tienda existente usa su ruta actual. WHATSAPP_NUMBER requiere el destino comercial autorizado con prefijo internacional. Si falta o es inválido, el catálogo permanece disponible y los pedidos se deshabilitan con un motivo.
 
-El configurador solicita usuario y contraseña con entrada oculta y guarda solo usuario/hash en `.env`, ignorado por Git. Conserva las demás variables. No hay credenciales predeterminadas.
-
-Revisa `.env`: `SQLITE_PATH` debe ser una ruta absoluta fuera del repositorio; el ejemplo usa `C:/JM-STORE-datos/catalogo.sqlite`. Completa `WHATSAPP_NUMBER` con el número comercial autorizado, con `+`, prefijo internacional y dígitos. Si falta o es inválido, los pedidos quedan deshabilitados y el catálogo sigue disponible.
-
-Abre dos terminales:
+En dos terminales separadas:
 
 ```powershell
-# Terminal 1
 npm run dev:api
 ```
 
 ```powershell
-# Terminal 2
 npm run dev:web
 ```
 
-Visita **http://localhost:5173**. Ingresa por «Acceso del encargado» para cargar tus productos. Una instalación nueva muestra el catálogo vacío; los datos ficticios pertenecen exclusivamente a las pruebas. Reinicia la API después de cambiar `.env`.
+Abre **http://localhost:5173**. El interruptor sol/luna está en la cabecera; el acceso del encargado conserva sus rutas. Una instalación nueva muestra catálogo vacío; las fotografías y productos de prueba nunca se incorporan al catálogo real. Reinicia la API si cambias su configuración externa.
 
 ## Compilación y servidor único
 
@@ -39,9 +42,9 @@ npm run build
 npm start
 ```
 
-Para probar esta modalidad local, configura antes `APP_ORIGIN=http://127.0.0.1:3001`, `PORT=3001` y `NODE_ENV=development` y abre ese origen. En internet, usa un origen HTTPS exacto, `NODE_ENV=production` y disco persistente; no se ha configurado alojamiento. El mismo servidor sirve `dist/` y `/api/`. SQLite y la configuración nunca se sirven como archivos web.
+Para servir la compilación local utiliza APP_ORIGIN=http://127.0.0.1:3001, PORT=3001 y NODE_ENV=development en su configuración de ensayo. En internet se requieren origen HTTPS exacto, NODE_ENV=production y disco persistente. No se ha desplegado ni elegido alojamiento. El servidor existente sirve dist y API; SQLite y configuración no se sirven como archivos web.
 
-## Pruebas
+## Pruebas y evidencia
 
 ```powershell
 npm test
@@ -49,6 +52,12 @@ npx playwright install chromium firefox webkit
 npm run test:e2e
 ```
 
-Las pruebas utilizan bases e imágenes temporales. Chromium cubre la batería completa; Firefox y WebKit ejecutan el recorrido básico. `playwright-report/index.html` contiene los resultados y capturas después de ejecutar los recorridos. Los enlaces externos se interceptan: no se envían mensajes.
+Los datos son temporales y el lanzador verifica su ruta antes de limpiar. Chromium cubre la batería completa; Firefox y WebKit ejecutan tres recorridos básicos ampliados por motor. Los enlaces externos se interceptan sin enviar mensajes. El informe HTML se genera en playwright-report/index.html para la última ejecución.
 
-Consulta la [guía de arranque y evidencias](specs/001-catalogo-pedidos-whatsapp/quickstart.md) para las condiciones, resultados y aceptación pendiente. El [registro de tareas](specs/001-catalogo-pedidos-whatsapp/tasks.md) distingue el trabajo completado de los ensayos pendientes. Los ensayos presenciales se aplazaron por indicación del responsable. La feature permanece abierta; no hay publicación, push ni merge.
+Registro del 2026-10-26: 33/33 pruebas Node y 140/140 E2E; posteriormente 4/4 comparaciones de capturas revisadas. Las baselines de escritorio usan Chromium/Windows, fuente y datos fijados. No actualizar masivamente las capturas sin revisar sus diferencias.
+
+Consulta [quickstart 002](specs/002-rediseno-visual/quickstart.md), [tasks](specs/002-rediseno-visual/tasks.md), [archivos modificados](specs/002-rediseno-visual/evidencia/archivos-modificados.md) y [evidencia final](specs/002-rediseno-visual/evidencia/regresion-final.md). La [guía 001](specs/001-catalogo-pedidos-whatsapp/quickstart.md) y sus [pendientes](specs/001-catalogo-pedidos-whatsapp/tasks.md) conservan el historial funcional.
+
+La aceptación total sigue pendiente de WhatsApp real, comparación del catálogo previo, dispositivo/lectura asistida y cinco participantes. La feature permanece abierta; no se realizó commit, push, merge ni publicación.
+
+Después de Implement, el usuario autorizó registrar y subir todos los cambios pendientes a la rama `002-rediseno-visual`. Esta entrega al repositorio conserva las aceptaciones pendientes y la feature abierta.

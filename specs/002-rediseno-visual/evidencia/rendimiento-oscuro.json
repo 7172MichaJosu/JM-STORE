@@ -1,0 +1,35 @@
+{
+  "tema": "oscuro",
+  "navegador": "156.0.8078.4",
+  "plataforma": "win32",
+  "viewport": "1672x941",
+  "productos": 20,
+  "cache": "contextos nuevos; localhost sin throttling; fuente incluida",
+  "mediciones": [
+    {
+      "apertura": 1,
+      "usableMs": 382,
+      "temaMs": 114
+    },
+    {
+      "apertura": 2,
+      "usableMs": 323,
+      "temaMs": 79
+    },
+    {
+      "apertura": 3,
+      "usableMs": 334,
+      "temaMs": 76
+    },
+    {
+      "apertura": 4,
+      "usableMs": 358,
+      "temaMs": 81
+    },
+    {
+      "apertura": 5,
+      "usableMs": 319,
+      "temaMs": 65
+    }
+  ]
+}

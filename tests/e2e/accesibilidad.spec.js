@@ -6,13 +6,13 @@ async function comprobarDisposicion(page) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   const pequenos = await page.locator('button, input, textarea, a').evaluateAll(elementos => elementos.filter(e => {
     const r = e.getBoundingClientRect(); const css = getComputedStyle(e);
-    return r.width > 0 && r.height > 0 && css.visibility !== 'hidden' && !e.classList.contains('saltar') && r.height < 43.9;
+    return r.width > 0 && r.height > 0 && css.visibility !== 'hidden' && !e.classList.contains('saltar') && (r.height < 43.9 || r.width < 43.9);
   }).map(e => ({ texto: e.textContent, alto: e.getBoundingClientRect().height })));
   expect(pequenos).toEqual([]);
 }
-for (const ancho of [360, 768, 1366]) for (const aumento of [100, 200]) {
-  test(`recorrido con teclado a ${ancho}px y texto ${aumento}%`, async ({ page }, info) => {
-    await page.setViewportSize({ width: ancho, height: 900 }); await page.emulateMedia({ reducedMotion: 'reduce' });
+for (const tema of ['claro', 'oscuro']) for (const ancho of [360, 768, 1366]) for (const aumento of [100, 200]) {
+  test(`recorrido ${tema} con teclado a ${ancho}px y texto ${aumento}%`, async ({ page }, info) => {
+    await page.setViewportSize({ width: ancho, height: 900 }); await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light', reducedMotion: 'reduce' });
     await page.addInitScript(porcentaje => { document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.fontSize = porcentaje + '%'; }); }, aumento);
     await habilitarDestino(page);
     await page.route('https://wa.me/**', route => route.fulfill({ contentType: 'text/html', body: '<p>Borrador externo simulado</p>' }));

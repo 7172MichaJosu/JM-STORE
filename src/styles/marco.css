@@ -1,17 +1,24 @@
-.franja { background: var(--verde); color: #f5f5e9; text-align: center; padding: 10px 20px; font-size: .74rem; letter-spacing: .03em; }
-.cabecera { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 26px; }
-.marca { display: inline-flex; gap: 12px; align-items: center; text-decoration: none; font-weight: 800; letter-spacing: -.04em; font-size: 1.24rem; flex-shrink: 0; }
-.marca-simbolo { width: 46px; height: 46px; border-radius: 13px; background: var(--verde); color: #f1e6cb; display: grid; place-content: center; position: relative; font-size: 18px; }
-.marca-simbolo span { position: absolute; bottom: 7px; right: 7px; font-size: .3rem; color: #efbd83; }
-.marca small { display: block; margin-top: 3px; font-size: .51rem; letter-spacing: .21em; font-weight: 600; color: var(--suave); }
-.cabecera nav { display: flex; align-items: center; flex-wrap: wrap; gap: 30px; font-size: .82rem; }
-.cabecera nav a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; }
-.cabecera nav a:hover { color: var(--acento); }
-.nav-activo { font-weight: 700; border-bottom: 2px solid var(--verde); }
-.nav-encargado { color: var(--suave); }
-.pie { border-top: 1px solid var(--borde); margin-top: 80px; padding-block: 34px; display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-size: .77rem; }
-.pie p { margin: 0; color: var(--suave); }
-.marca-pie { text-decoration: none; font-weight: 850; font-size: 1.1rem; letter-spacing: -.04em; display: inline-flex; align-items: center; min-height: 44px; }
-.marca-pie span { color: var(--acento); font-size: .5rem; margin-left: 4px; }
-.pie>a:last-child { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
-@media (max-width: 760px) { .cabecera { flex-wrap: wrap; gap: 10px; padding-block: 20px; } .cabecera nav { gap: 18px; } .pie { align-items: start; flex-direction: column; margin-top: 48px; } }
+.cabecera { background: var(--superficie); border-bottom: 1px solid var(--borde-decorativo); position: relative; z-index: 3; }
+.cabecera-interior { min-height: 88px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.marca { display: inline-flex; align-items: center; gap: 16px; text-decoration: none; min-height: 46px; font-size: 1.55rem; font-weight: 800; letter-spacing: -.045em; flex-shrink: 0; }
+.marca-simbolo { width: 60px; height: 60px; display: grid; place-items: center; border-radius: 18px; background: linear-gradient(140deg,#0C343D,#071C2B); color: #FFFFFF; letter-spacing: -.07em; font-size: 1.65rem; box-shadow: inset 0 0 0 1px #FFFFFF20; }
+.marca small { display: block; font-size: .56rem; letter-spacing: .26em; color: var(--texto-atenuado); margin-top: 4px; }
+:root[data-tema="oscuro"] .marca-simbolo { background: linear-gradient(140deg,#123D66,#061024); box-shadow: 0 0 0 1px #00D4FF, 2px 2px 0 #7C3AED, 0 0 20px #00D4FF20; }
+.cabecera nav { display: flex; flex-wrap: wrap; max-width: 100%; align-items: center; justify-content: center; gap: 5px; background: var(--superficie-elevada); padding: 5px; border-radius: 99px; }
+.cabecera nav a { min-height: 44px; padding: 10px 20px; display: inline-flex; justify-content: center; align-items: center; gap: 9px; text-decoration: none; border-radius: 99px; font-size: .84rem; font-weight: 650; }
+.cabecera nav a:hover { background: var(--superficie); color: var(--foco); }
+.cabecera .nav-activo { color: var(--foco); background: var(--superficie); font-weight: 800; }
+:root[data-tema="oscuro"] .cabecera nav { background: transparent; }
+:root[data-tema="oscuro"] .cabecera .nav-activo { background: #0066FF12; box-shadow: 0 10px 16px -14px var(--cian); }
+.interruptor-tema { min-width: 100px; padding: 4px; height: 50px; min-height: 50px; border: 1px solid var(--borde-control); border-radius: 99px; background: var(--superficie-elevada); color: var(--texto-atenuado); box-shadow: none; gap: 0; flex-shrink: 0; }
+.interruptor-tema > span { width: 44px; height: 40px; display: grid; place-items: center; border-radius: 99px; }
+.interruptor-tema .tema-sol { color: #FFFFFF; background: var(--azul); box-shadow: 0 3px 12px #0066FF30; }
+:root[data-tema="oscuro"] .interruptor-tema .tema-sol { background: transparent; color: var(--texto-atenuado); box-shadow: none; }
+:root[data-tema="oscuro"] .interruptor-tema .tema-luna { background: #0066FF; color: #FFFFFF; box-shadow: 0 0 16px #00D4FF35; }
+.pie { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding-block: 35px; border-top: 1px solid var(--borde-decorativo); margin-top: 60px; }
+.marca-pie { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; }
+.marca-pie span { color: var(--azul); }
+.pie p { font-size: .8rem; color: var(--texto-atenuado); margin: 0; }
+.pie>a:last-child { display: inline-flex; align-items: center; min-height: 44px; font-size: .8rem; }
+@media(max-width: 1199px) { .cabecera-interior { gap: 12px; flex-wrap: wrap; padding-block: 14px; }.cabecera nav { order: 3; width: 100%; }.cabecera nav a { flex: 1; } }
+@media(max-width: 639px) { .marca { font-size: 1.12rem; gap: 10px; }.marca-simbolo { width: 46px; height: 46px; border-radius: 14px; font-size: 1.3rem; }.marca small { font-size: .45rem; }.cabecera nav { border-radius: 16px; gap: 2px; }.cabecera nav a { padding: 10px 7px; font-size: .7rem; gap: 5px; }.cabecera nav svg { width: 16px; }.interruptor-tema { min-width: 90px; }.interruptor-tema>span { width: 39px; }.pie { align-items: start; } }

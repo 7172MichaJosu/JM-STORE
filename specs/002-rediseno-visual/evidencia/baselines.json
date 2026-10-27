@@ -1,0 +1,22 @@
+[
+  {
+    "captura": "specs\\002-rediseno-visual\\evidencia\\capturas\\tienda-claro-1672.png",
+    "baseline": "tests\\e2e\\presentacion.spec.js-snapshots\\tienda-claro-1672-chromium-win32.png",
+    "sha256": "900907654ee7da7a30d9ad2d9c6b7584e3bef828071a0819aae20ae55d562492"
+  },
+  {
+    "captura": "specs\\002-rediseno-visual\\evidencia\\capturas\\tienda-oscuro-1672.png",
+    "baseline": "tests\\e2e\\presentacion.spec.js-snapshots\\tienda-oscuro-1672-chromium-win32.png",
+    "sha256": "a762abdf001d8b663fc4c7d4d0c221fa0b58f98a95cef48ea635b4b41d6d43af"
+  },
+  {
+    "captura": "specs\\002-rediseno-visual\\evidencia\\capturas\\panel-claro-1672.png",
+    "baseline": "tests\\e2e\\presentacion.spec.js-snapshots\\panel-claro-1672-chromium-win32.png",
+    "sha256": "b12fa6687d5cc8832724ec9ab6f8e1f285946c83dc9fb70831a5977edfd36f06"
+  },
+  {
+    "captura": "specs\\002-rediseno-visual\\evidencia\\capturas\\panel-oscuro-1672.png",
+    "baseline": "tests\\e2e\\presentacion.spec.js-snapshots\\panel-oscuro-1672-chromium-win32.png",
+    "sha256": "ebe6930830f1aab0a53dee6282d3de9bf268109bf6109fab0fdbd5444bf935c9"
+  }
+]

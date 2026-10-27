@@ -1,5 +1,8 @@
 import { test, expect, ingresar } from '../fixtures/navegador.mjs';
 
+for (const tema of ['claro', 'oscuro']) test.describe(`administración ${tema}`, () => {
+  test.beforeEach(async ({ page }) => { await page.emulateMedia({ colorScheme: tema === 'oscuro' ? 'dark' : 'light' }); });
+
 test('diálogo identificado, foco, cancelar/Escape sin petición y eliminar solo elegido', async ({ page }) => {
   await ingresar(page); const filas = page.locator('.fila-gestion'); const cantidad = await filas.count();
   const primera = filas.first(); const nombre = await primera.getByRole('heading').textContent();
@@ -44,4 +47,17 @@ test('último producto deja vacío; pestaña antigua no autoriza tras logout', a
   const r = await antigua.request.delete(`/api/productos/${datos.productos[0].id}`, { headers: { Origin: 'http://localhost:4175', 'X-JM-STORE-Request': '1' } }); expect(r.status()).toBe(401);
   await antigua.bringToFront(); await antigua.evaluate(() => window.dispatchEvent(new Event('focus')));
   await expect(antigua.getByRole('button', { name: 'Iniciar sesión', exact: true })).toBeVisible();
+});
+
+test('homónimos con ID distinto: cancelar no elimina y confirmar retira solo el elegido', async ({ page }) => {
+  await ingresar(page); const datos = (await (await page.request.get('/api/catalogo')).json()).productos;
+  const iguales = datos.filter(p => p.nombre === 'Nombre repetido'); expect(iguales).toHaveLength(2);
+  const filas = page.locator('.fila-gestion').filter({ has: page.getByRole('heading', { name: 'Nombre repetido', exact: true }) });
+  const fotoRetirada = await filas.first().locator('img').getAttribute('src');
+  await filas.first().getByRole('button', { name: /^Eliminar/ }).click(); await page.getByRole('dialog').getByRole('button', { name: 'Cancelar' }).click(); await expect(filas).toHaveCount(2);
+  await filas.first().getByRole('button', { name: /^Eliminar/ }).click(); await page.getByRole('dialog').getByRole('button', { name: 'Eliminar', exact: true }).click(); await expect(filas).toHaveCount(1);
+  const despues = (await (await page.request.get('/api/catalogo')).json()).productos;
+  expect(despues).toEqual(datos.filter(p => p.imagenUrl !== fotoRetirada));
+});
+
 });
