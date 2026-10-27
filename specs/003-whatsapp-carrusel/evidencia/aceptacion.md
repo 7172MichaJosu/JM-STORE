@@ -91,3 +91,7 @@ T032–T034 permanecen sin marcar. No se declara aceptación total, cumplimiento
 ## Estado entregado
 
 33/36 tareas completas. Esta continuación completa T029, T030, T031, T035 y T036; T032–T034 permanecen pendientes. Se conservan productos, fotografías, `.env`, credenciales, SQLite, rama y commit de partida. El [resumen de pruebas de laptop](pruebas-laptop.json) registra los recuentos; el informe HTML de la ejecución final está en `playwright-report/index.html` (local, ignorado por Git). `git diff --check` sin errores. No hay aceptación total ni cierre de feature.
+
+## Solicitudes Git posteriores
+
+El usuario autorizó posteriormente registrar y subir el avance: commit `8467b06` en `003-whatsapp-carrusel`. Después solicitó el cierre Git siguiendo AGENTS.md, condicionado a pruebas correctas y conservando T032–T034 abiertas. La [revisión de cierre](cierre-git.md) registra las nuevas pruebas y el control de preservación. Los artefactos de medición versionados pueden actualizarse en esa ejecución; los recuentos y valores anteriores de esta página corresponden a la fase de implementación. No se modifica el alcance ni se declara aceptación total de la funcionalidad.

@@ -4,7 +4,7 @@ Catálogo público con pedidos individuales por WhatsApp. El encargado inicia se
 
 La feature 002 incorpora portada, tarjetas y panel modernos, Manrope local, modo claro/oscuro, preferencia del dispositivo hasta elegir manualmente y movimiento reducido. Se conserva la base funcional 001 y el catálogo existente. El [registro de implementación](specs/002-rediseno-visual/evidencia/aceptacion.md) distingue lo verificado técnicamente de las aceptaciones externas pendientes.
 
-La feature 003, en revisión y sin cierre, añade fichas individuales, mensajes WhatsApp con descripción completa y enlace, metadatos Open Graph e imagen social, y carrusel con avance cada cinco segundos, miniaturas, flechas y gesto táctil. Consulta la [guía 003](specs/003-whatsapp-carrusel/quickstart.md) y su [evidencia de aceptación](specs/003-whatsapp-carrusel/evidencia/aceptacion.md). La vista previa externa requiere publicación HTTPS y validación real con WhatsApp; localhost no la aprueba.
+La feature 003 añade fichas individuales, mensajes WhatsApp con descripción completa y enlace, metadatos Open Graph e imagen social, y carrusel con avance cada cinco segundos, miniaturas, flechas y gesto táctil. Consulta la [guía 003](specs/003-whatsapp-carrusel/quickstart.md), su [evidencia de aceptación](specs/003-whatsapp-carrusel/evidencia/aceptacion.md) y el [registro de revisión para cierre Git](specs/003-whatsapp-carrusel/evidencia/cierre-git.md). La aceptación externa T032–T034 sigue pendiente: requiere HTTPS público, WhatsApp real y ensayos presenciales; localhost no la aprueba.
 
 ## Ejecutar en Windows
 

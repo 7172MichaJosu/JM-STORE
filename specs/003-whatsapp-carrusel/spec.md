@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-27
 
-**Status**: Specify, Clarify, Plan y Tasks completados; implementación recuperada y verificación técnica local completada en laptop. Aceptación externa pendiente (T032–T034); resultados y límites en [evidencia/aceptacion.md](evidencia/aceptacion.md). Feature sin cierre.
+**Status**: Specify, Clarify, Plan y Tasks completados; implementación recuperada y verificación técnica local completada en laptop. Cierre Git autorizado por el usuario, condicionado a pruebas correctas y documentado en [evidencia/cierre-git.md](evidencia/cierre-git.md). Aceptación externa pendiente (T032–T034); resultados y límites en [evidencia/aceptacion.md](evidencia/aceptacion.md).
 
 **Input**: Mejorar los pedidos por WhatsApp para incluir emojis, nombre, descripción completa, precio en soles y enlace individual del producto; ese enlace debe mostrar fotografía y detalles y preparar vista previa con imagen en WhatsApp mediante metadatos apropiados cuando la tienda esté publicada en Internet. El cliente revisa y envía el mensaje desde WhatsApp. Agregar un carrusel moderno e interactivo en portada con productos existentes, avance automático, miniaturas con cambio al pasar el puntero, flechas y gesto de deslizamiento en celulares. Mantener modos claro y oscuro y preservar productos, fotografías, credenciales, base de datos y funcionalidades actuales.
 
@@ -109,7 +109,7 @@ Como cliente, quiero recorrer visualmente productos reales desde la portada y ca
 - **A-03 — Producto individual y pedido**: Cada botón continúa correspondiendo a un solo producto, sin cantidades ni totales. El enlace identifica el producto seleccionado y el mensaje mantiene la revisión y el envío manual en WhatsApp.
 - **A-04 — Carrusel**: El orden de productos es el orden actual del catálogo. No hay selección manual de destacados, nuevos campos, productos de demostración ni catálogo separado. Conforme a Clarify, el avance automático ocurre cada cinco segundos, se pausa mientras una persona apunta, enfoca o interactúa mediante tacto y se reanuda al terminar la interacción. Con movimiento reducido se detiene la rotación automática y se conserva la navegación manual.
 - **A-05 — Preservación**: Se conservan la base de datos, productos, fotografías, credenciales externas y demás datos y funciones actuales. No se piden datos adicionales de clientes ni se exponen secretos en mensajes, errores o documentación.
-- **A-06 — Continuidad SDD**: Specify y Clarify están completados y el diseño técnico se documenta en [plan.md](plan.md) y sus artefactos de fase 0/1. No se han generado Tasks ni ejecutado Implement; la aceptación y las comprobaciones de esta spec permanecen pendientes. La fase Plan conserva las cinco respuestas aprobadas y no incorpora decisiones nuevas de producto.
+- **A-06 — Continuidad SDD**: Specify, Clarify, Plan y Tasks están completados. El diseño técnico se documenta en [plan.md](plan.md) y sus artefactos de fase 0/1; la implementación y sus comprobaciones locales se registran en [evidencia/aceptacion.md](evidencia/aceptacion.md). La aceptación externa T032–T034 sigue pendiente y el cierre Git no la aprueba. Se conservan las cinco respuestas aprobadas, sin decisiones nuevas de producto.
 
 
 

@@ -152,6 +152,7 @@ US1 entrega mensaje y ficha individual. US2 añade navegación de portada sin su
 ## Notes
 
 - Revisión en laptop del 2026-10-27: 33/36 tareas completas. En esta continuación se completaron T029, T030, T031, T035 y T036; T032–T034 conservan sus dependencias externas. Node 41/41 y E2E final 171/171, después de corregir superposición a texto 200 % y añadir siete casos de aceptación. Sin commit, push, merge ni cierre.
+- Solicitud posterior: cierre Git autorizado conforme a AGENTS.md, condicionado a pruebas correctas. T032–T034 permanecen abiertas; la integración no declara aceptación total. Ver [evidencia/cierre-git.md](evidencia/cierre-git.md).
 
 - `[US1]`/`[US2]` corresponden a las dos historias P1 de `spec.md`.
 - Mantener límites existentes: nombre 4096 bytes y descripción 32768 bytes; no truncar. La compatibilidad externa con URLs largas requiere evidencia.
