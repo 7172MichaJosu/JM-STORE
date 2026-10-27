@@ -73,7 +73,7 @@ Antes de T024–T029, confirmar que fallan por el carrusel aún ausente.
 - [X] T026 [P] [US2] Agregar trazos accesibles de flecha anterior/siguiente sin quitar iconos actuales en `src/components/Icono.jsx`.
 - [X] T027 [US2] Crear carrusel con producto activo, miniaturas hover/activación, flechas, swipe, foco/etiquetas, estados cero/uno y transición 240 ms en `src/components/CarruselProductos.jsx` y `src/styles/carrusel.css` (depende de T024–T026).
 - [X] T028 [US2] Pasar listado/estado a portada y reemplazar el producto protagonista estático por carrusel; conservar texto, CTA, franja y estado neutro en `src/pages/Catalogo.jsx` y `src/components/PortadaCatalogo.jsx` (depende de T027).
-- [ ] T029 [US2] Corregir y ejecutar pruebas unitarias, E2E, visuales, teclado, tacto y movimiento reducido; comprobar `contain`, foco, contraste y objetivos 44×44 en `tests/unit/carrusel.test.js`, `tests/e2e/` y `src/styles/carrusel.css` (depende de T020–T028).
+- [X] T029 [US2] Corregir y ejecutar pruebas unitarias, E2E, visuales, teclado, tacto y movimiento reducido; comprobar `contain`, foco, contraste y objetivos 44×44 en `tests/unit/carrusel.test.js`, `tests/e2e/` y `src/styles/carrusel.css` (depende de T020–T028).
 
 **Checkpoint**: US2 comprobable con datos temporales, dos temas, medidas indicadas, teclado/tacto y movimiento reducido.
 
@@ -81,13 +81,13 @@ Antes de T024–T029, confirmar que fallan por el carrusel aún ausente.
 
 ## Phase 5: Polish — regresión y aceptación
 
-- [ ] T030 Revisar presentación en ambos temas y actualizar únicamente baselines de tienda justificadas; conservar capturas del panel en `tests/e2e/presentacion.spec.js-snapshots/tienda-claro-1672-chromium-win32.png` y `tests/e2e/presentacion.spec.js-snapshots/tienda-oscuro-1672-chromium-win32.png`.
-- [ ] T031 Ejecutar `npm test`, `npm run build` y `npm run test:e2e` definidos en `package.json`; registrar resultados, navegadores y fallos en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
+- [X] T030 Revisar presentación en ambos temas y actualizar únicamente baselines de tienda justificadas; conservar capturas del panel en `tests/e2e/presentacion.spec.js-snapshots/tienda-claro-1672-chromium-win32.png` y `tests/e2e/presentacion.spec.js-snapshots/tienda-oscuro-1672-chromium-win32.png`.
+- [X] T031 Ejecutar `npm test`, `npm run build` y `npm run test:e2e` definidos en `package.json`; registrar resultados, navegadores y fallos en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
 - [ ] T032 [US1] En HTTPS público autorizado, comprobar tres fichas, imágenes y vistas previas desde fuera de la red local; registrar resultado y límites externos en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
 - [ ] T033 [US1] Con destino comercial autorizado, revisar tres mensajes en WhatsApp real sin enviarlos, incluida descripción larga; documentar límites sin truncar ni agregar fallback en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
 - [ ] T034 [US2] Validar en celular físico gesto/scroll/zoom y en computadora teclado/lectura asistida; documentar ambos temas y movimiento reducido en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
-- [ ] T035 Comparar desde la app catálogo/fotos con inventario previo; verificar persistencia, login/logout y altas/bajas solo con productos ficticios, sin tocar credenciales en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
-- [ ] T036 Confirmar que guía y contratos reflejan la implementación real, anotando aceptaciones pendientes en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
+- [X] T035 Comparar desde la app catálogo/fotos con inventario previo; verificar persistencia, login/logout y altas/bajas solo con productos ficticios, sin tocar credenciales en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
+- [X] T036 Confirmar que guía y contratos reflejan la implementación real, anotando aceptaciones pendientes en `specs/003-whatsapp-carrusel/evidencia/aceptacion.md`.
 
 ---
 
@@ -151,11 +151,13 @@ US1 entrega mensaje y ficha individual. US2 añade navegación de portada sin su
 
 ## Notes
 
+- Revisión en laptop del 2026-10-27: 33/36 tareas completas. En esta continuación se completaron T029, T030, T031, T035 y T036; T032–T034 conservan sus dependencias externas. Node 41/41 y E2E final 171/171, después de corregir superposición a texto 200 % y añadir siete casos de aceptación. Sin commit, push, merge ni cierre.
+
 - `[US1]`/`[US2]` corresponden a las dos historias P1 de `spec.md`.
 - Mantener límites existentes: nombre 4096 bytes y descripción 32768 bytes; no truncar. La compatibilidad externa con URLs largas requiere evidencia.
 - No agregar paquetes, migraciones, productos de prueba a la base real, secretos, datos personales, pagos o alcance no aprobado.
 - T032–T034 podrían quedar pendientes sin HTTPS, WhatsApp autorizado o dispositivos físicos; no aprobar con mocks.
-- Esta lista describe trabajo futuro; no ejecuta pruebas ni implementación.
+- Esta lista registra el avance recuperado y la continuación verificada en laptop. Consultar [evidencia/aceptacion.md](evidencia/aceptacion.md) para resultados y límites; las casillas externas abiertas no se sustituyen por pruebas simuladas.
 
 
 

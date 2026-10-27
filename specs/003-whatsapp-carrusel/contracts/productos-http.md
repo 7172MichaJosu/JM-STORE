@@ -1,6 +1,6 @@
 ﻿# Contrato HTTP y Open Graph — 003
 
-**Estado**: Diseño para Implement. Complementa los contratos de 001/002; no cambia altas, eliminación, acceso o `/api/catalogo`.
+**Estado**: Contrato implementado y revisado contra las rutas recuperadas el 2026-10-27. Complementa los contratos de 001/002; no cambia altas, eliminación, acceso o `/api/catalogo`. Ver [evidencia de aceptación](../evidencia/aceptacion.md), que mantiene pendiente la validación externa con HTTPS y WhatsApp.
 
 ## Convenciones
 

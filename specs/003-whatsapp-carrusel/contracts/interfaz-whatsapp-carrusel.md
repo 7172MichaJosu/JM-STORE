@@ -1,6 +1,6 @@
 ﻿# Contrato de interfaz y WhatsApp — 003
 
-**Estado**: Diseño de Plan; complementa criterios SC-001 a SC-007. Todas las funciones aquí descritas quedan pendientes de implementación.
+**Estado**: Contrato implementado y revisado contra el código recuperado el 2026-10-27; complementa SC-001 a SC-007. La comprobación técnica local y los ensayos externos pendientes se registran en [aceptación](../evidencia/aceptacion.md).
 
 ## Constructores compartidos
 

@@ -1,6 +1,6 @@
 ﻿# Guía de validación — 003 WhatsApp y carrusel
 
-**Estado**: Guía preparada en Plan el 2026-10-27. Sus escenarios se ejecutarán después de Tasks/Implement; no hay resultados aprobados en esta entrega. Los comandos generales ya existen; las nuevas pruebas/rutas descritas dependen de la implementación futura.
+**Estado**: Implementación recuperada y revisada en laptop el 2026-10-27. Las rutas y pruebas descritas existen. Consultar los resultados locales y las aceptaciones externas aún pendientes en [evidencia/aceptacion.md](evidencia/aceptacion.md); esta guía no declara aprobados los ensayos con WhatsApp, HTTPS público ni celular físico.
 
 Contratos de referencia: [HTTP y OG](contracts/productos-http.md), [interfaz y mensaje](contracts/interfaz-whatsapp-carrusel.md), [datos](data-model.md). Los criterios SC pertenecen a [spec.md](spec.md).
 
@@ -78,7 +78,9 @@ npm run test:e2e
 
 Esperado: pruebas existentes y nuevas aprobadas, sin alterar el catálogo real. Chromium cubre casos completos; Firefox/WebKit incluyen ficha y navegación manual en `basico.spec.js`. Registrar recuentos y fallos reales, no reutilizar números históricos de 002 como evidencia de 003.
 
-Los casos del temporizador usarán reloj controlado de Playwright: no avanzar antes de 4999 ms, un cambio al llegar a 5000 ms, diez avances, pausa simultánea por foco/hover/tacto y reanudación tras un período completo. Emular movimiento reducido al inicio y durante la visita. Las pruebas HTTP inyectan plantilla mínima para que `npm test` no necesite una compilación previa; E2E verifica también HTML compilado real. No reducir cobertura o actualizar capturas automáticamente para convertir un fallo en aprobación.
+Los casos del temporizador usan reloj controlado de Playwright: no avanzar antes de 4999 ms, un cambio al llegar a 5000 ms, diez avances, pausa simultánea por foco/hover/tacto y reanudación tras un período completo. Emular movimiento reducido al inicio y durante la visita. Las pruebas HTTP inyectan plantilla mínima para que `npm test` no necesite una compilación previa; E2E verifica también HTML compilado real. No reducir cobertura o actualizar capturas automáticamente para convertir un fallo en aprobación.
+
+La revisión de laptop añade `tests/e2e/aceptacion-carrusel.spec.js`: ciclo de ocho productos con diez avances, diez selecciones por método en ambos temas y preferencias de movimiento, pausa combinada de tacto/foco y diez fichas en sesiones nuevas. Para repetir solo estos casos después de compilar, ejecutar `node tests/fixtures/ejecutar-web.mjs aceptacion-carrusel.spec.js --project=chromium`. Los Pointer Events simulados comprueban el código; el scroll/zoom y el gesto físico siguen requiriendo celular.
 
 ## 5. Escenarios observables de aceptación
 
@@ -111,4 +113,4 @@ Sin dominio/HTTPS o WhatsApp autorizado, registrar estos casos como pendientes, 
 
 ## 7. Evidencia posterior
 
-En Implement se podrá crear `evidencia/aceptacion.md` con entorno, datos ficticios, dispositivo/navegador, acción, resultado, fecha y estado por SC. Adjuntar pruebas/capturas revisadas sin credenciales, cookies, rutas privadas o número real innecesario. Mantener pendientes de 001/002 y distinguir aprobación técnica de los ensayos presenciales/WhatsApp. La preparación de esta guía no ejecuta ni aprueba ninguno de sus escenarios.
+El registro [evidencia/aceptacion.md](evidencia/aceptacion.md) distingue evidencia recuperada, resultados de laptop y dependencias externas. Adjuntar pruebas/capturas revisadas sin credenciales, cookies, rutas privadas o número real innecesario. Mantener pendientes de 001/002 y distinguir aprobación técnica de los ensayos presenciales/WhatsApp.

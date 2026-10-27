@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-27
 
-**Status**: Specify y Clarify completados; Plan técnico documentado. Tasks, Implement y aceptación pendientes.
+**Status**: Specify, Clarify, Plan y Tasks completados; implementación recuperada y verificación técnica local completada en laptop. Aceptación externa pendiente (T032–T034); resultados y límites en [evidencia/aceptacion.md](evidencia/aceptacion.md). Feature sin cierre.
 
 **Input**: Mejorar los pedidos por WhatsApp para incluir emojis, nombre, descripción completa, precio en soles y enlace individual del producto; ese enlace debe mostrar fotografía y detalles y preparar vista previa con imagen en WhatsApp mediante metadatos apropiados cuando la tienda esté publicada en Internet. El cliente revisa y envía el mensaje desde WhatsApp. Agregar un carrusel moderno e interactivo en portada con productos existentes, avance automático, miniaturas con cambio al pasar el puntero, flechas y gesto de deslizamiento en celulares. Mantener modos claro y oscuro y preservar productos, fotografías, credenciales, base de datos y funcionalidades actuales.
 

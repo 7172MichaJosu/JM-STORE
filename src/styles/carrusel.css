@@ -1,5 +1,5 @@
 .carrusel { width: 100%; min-width: 0; z-index: 2; position: relative; }
-.hero .hero-arte:has(.carrusel) { min-height: 496px; padding-block: 72px 36px; }
+.hero .hero-arte:has(.carrusel) { min-height: 496px; padding-block: calc(3rem + 24px) 36px; }
 .hero .hero-arte:has(.carrusel) .escena-distintivo { top: 8px; }
 .hero .hero-arte:has(.carrusel) .escena-base { bottom: 190px; }
 .carrusel-cabecera { width: 80%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -24,7 +24,7 @@
 .sin-transicion { animation: none; }
 @keyframes carrusel-entrada { from { opacity: .25; } to { opacity: 1; } }
 @media(max-width: 639px) {
- .hero .hero-arte:has(.carrusel) { min-height: 490px; padding-block: 60px 28px; }
+ .hero .hero-arte:has(.carrusel) { min-height: 490px; padding-block: calc(2rem + 28px) 28px; }
  .carrusel .hero-producto { height: 180px; }
  .carrusel-cabecera, .carrusel-datos, .carrusel-miniaturas { width: 100%; }
  .carrusel-datos { gap: 10px; }.carrusel-datos h2 { font-size: .95rem; }.carrusel-datos p { font-size: 1rem; }

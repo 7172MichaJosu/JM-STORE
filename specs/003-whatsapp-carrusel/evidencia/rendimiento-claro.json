@@ -8,28 +8,28 @@
   "mediciones": [
     {
       "apertura": 1,
-      "usableMs": 304,
-      "temaMs": 67
+      "usableMs": 520,
+      "temaMs": 116
     },
     {
       "apertura": 2,
-      "usableMs": 301,
-      "temaMs": 82
+      "usableMs": 528,
+      "temaMs": 154
     },
     {
       "apertura": 3,
-      "usableMs": 307,
-      "temaMs": 70
+      "usableMs": 536,
+      "temaMs": 118
     },
     {
       "apertura": 4,
-      "usableMs": 300,
-      "temaMs": 80
+      "usableMs": 559,
+      "temaMs": 138
     },
     {
       "apertura": 5,
-      "usableMs": 318,
-      "temaMs": 85
+      "usableMs": 552,
+      "temaMs": 89
     }
   ]
 }

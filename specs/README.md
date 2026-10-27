@@ -28,3 +28,13 @@ Specify, Clarify, [Plan](002-rediseno-visual/plan.md) y [Tasks](002-rediseno-vis
 Solicitud posterior a Implement: el usuario autorizó commit y push de todos los cambios pendientes a `002-rediseno-visual`. La rama conserva el estado de aceptación descrito; en aquella solicitud no se pidió su cierre ni fusión con `main`.
 
 Solicitud del 2026-10-27: cierre Git de `002-rediseno-visual`, con fusión `--no-ff` en `main`, eliminación de ambas ramas de la feature y subida de `main`, condicionado a pruebas correctas. La aceptación funcional continúa pendiente: T024, T046, T059, T065 y T067 permanecen sin marcar. Consultar [registro de revisión y pruebas de cierre](002-rediseno-visual/evidencia/cierre-git.md).
+
+## Feature en revisión — 003 WhatsApp y carrusel
+
+La rama `003-whatsapp-carrusel` recupera el avance `eae656f`: mensaje individual con emojis, descripción íntegra, precio y enlace; ficha por UUID con HTML Open Graph e imagen social JPEG; carrusel de productos existentes con avance cada cinco segundos, controles manuales, pausas y movimiento reducido. No cambia el esquema SQLite ni añade dependencias.
+
+La continuación en laptop del 2026-10-27 revisa el código y los documentos SDD, repite las pruebas y completa las verificaciones locales pendientes. El [registro de aceptación](003-whatsapp-carrusel/evidencia/aceptacion.md) y [tasks.md](003-whatsapp-carrusel/tasks.md) son la referencia del resultado. T032, T033 y T034 requieren todavía HTTPS público, WhatsApp real y validación presencial con celular/lectura asistida; los ensayos técnicos no los aprueban. Se mantienen también las aceptaciones pendientes de 001/002.
+
+Resultado local: 33/36 tareas completas; T029, T030, T031, T035 y T036 completadas en esta revisión. Se corrigió una superposición a texto 200 % y se añadieron siete pruebas: Node 41/41, compilación aprobada y regresión E2E final 171/171 (163 Chromium, 4 Firefox, 4 WebKit), manteniendo las baselines existentes.
+
+Por instrucción expresa, esta continuación conserva productos, fotografías, `.env`, credenciales y SQLite, y no realiza commit, push, merge ni cierre de la feature.
